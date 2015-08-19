@@ -19,8 +19,13 @@ FartyTurd.GameState = {
     //score 
     this.currentScore = 0;
     
-    //speed level
+    //level values
+    this.levelScoreBoundary = 10;
     this.levelSpeed = 100;
+    this.minPipeSeparation = 50;
+    this.maxPipeSeparation = 180;
+    this.minPipeGapSize = 80;
+    this.maxPipeGapSize = 130;
   },
   create: function() {
     //moving background
@@ -140,6 +145,17 @@ FartyTurd.GameState = {
   incrementScore: function () {
     this.currentScore++;
     this.fartCountLabel.text = this.currentScore;
+    if (this.currentScore % this.levelScoreBoundary === 0) {
+      this.levelUp();
+    }
+  },
+  levelUp: function () {
+    this.levelSpeed = this.levelSpeed + 10;
+    this.minPipeSeparation = this.minPipeSeparation + 5;
+    this.maxPipeSeparation = this.maxPipeSeparation - 5;
+    this.minPipeGapSize = this.minPipeGapSize + 5;
+    this.maxPipeGapSize = this.maxPipeGapSize - 5;
+
   },
   playerJump: function(){
     this.player.body.velocity.y = -150;
@@ -158,19 +174,10 @@ FartyTurd.GameState = {
     this.pipePool.add(this.currentPipe);
   },
   generateRandomPipe: function() {
-    var data = {};
-    
-    //distance from the previous pipe
-    var minSeparation = 50;
-    var maxSeparation = 180;
-    data.separation = minSeparation + Math.random() * (maxSeparation - minSeparation);
-
-    // gap size
-    var minSize = 80;
-    var maxSize = 130;
-    data.gapSize = minSize + Math.random() * (maxSize - minSize);
-      
-    return data;
+    return {
+      separation: this.minPipeSeparation + Math.random() * (this.maxPipeSeparation - this.minPipeSeparation),
+      gapSize: this.minPipeGapSize + Math.random() * (this.maxPipeGapSize - this.minPipeGapSize)
+    };
   },
   gameOver: function(){
     this.player.kill();    
