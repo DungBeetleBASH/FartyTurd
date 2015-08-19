@@ -13,11 +13,12 @@ FartyTurd.PreloadState = {
     //load game assets    
     this.load.image('playerDead', 'assets/images/player_dead.png');
     this.load.image('floor', 'assets/images/floor.png');
+    this.load.image('pipe', 'assets/images/pipe.png');
+    this.load.image('pipe-up', 'assets/images/pipe-up.png');
+    this.load.image('pipe-down', 'assets/images/pipe-down.png');
     this.load.image('ground', 'assets/images/ground.png');
-    this.load.image('coin', 'assets/images/coin.png');
     this.load.image('background', 'assets/images/background.png');
-    this.load.image('player', 'assets/images/turd.png');
-    //this.load.spritesheet('player', 'assets/images/player_spritesheet.png', 51, 67, 5, 2, 3);
+    this.load.image('turd', 'assets/images/turd.png');
     this.load.audio('fart', ['assets/audio/coin.mp3', 'assets/audio/coin.ogg']);
   },
   create: function() {

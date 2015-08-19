@@ -4,9 +4,6 @@ FartyTurd.GameState = {
 
   init: function() {
     
-    //pool of floors
-    this.floorPool = this.add.group();
-    
     //pool of pipes
     this.pipePool = this.add.group();
     
@@ -23,34 +20,37 @@ FartyTurd.GameState = {
     this.currentScore = 0;
     
     //speed level
-    this.levelSpeed = 200;
+    this.levelSpeed = 100;
   },
   create: function() {
     //moving background
     this.background = this.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'background');
-    this.background.tileScale.y = 2;
+    this.background.tileScale.y = 2.5;
+    this.background.tileScale.x = 2.5;
     this.background.autoScroll(-this.levelSpeed/6, 0);
     this.game.world.sendToBack(this.background);
             
     //create the player
-    this.player = this.add.sprite(50, 140, 'player');
+    this.player = this.add.sprite(50, 140, 'turd');
     this.player.anchor.setTo(0.5);
-    this.player.width = 40;
-    this.player.height = 40;
-    //this.player.animations.add('moving', [0, 1, 2, 3, 2, 1], 15, true);
     this.game.physics.arcade.enable(this.player);
     
     //change player bounding box
-    this.player.body.setSize(36, 36, 0, 0);
-    
-    //this.player.play('moving');
+    this.player.body.setSize(32, 24, 0, 0);
     
     //hard-code first pipe
-    this.currentPipe = new FartyTurd.Pipe(this.game, this.floorPool, 11, 0, 200, -this.levelSpeed);
+    this.currentPipe = new FartyTurd.Pipe(this.game, 250, 0, -this.levelSpeed);
     this.pipePool.add(this.currentPipe);
     
     //fart sound
     this.fartSound = this.add.audio('fart');
+    this.fartSound.isPlaying = false;
+    this.fartSound.onPlay.add(function (s) {
+      s.isPlaying = true;
+    });
+    this.fartSound.onStop.add(function (s) {
+      s.isPlaying = false;
+    });
     
     this.createPipe();
     
@@ -67,24 +67,26 @@ FartyTurd.GameState = {
       this.pipePool.forEachAlive(function(pipe, index){
         this.game.physics.arcade.overlap(this.player, pipe, this.gameOver, null, this);
 
-        if(!pipe.isScored && pipe.length && pipe.children[pipe.length-1].right < this.player.left) {
+        if(!pipe.isScored && pipe.length && pipe.children[0].right < this.player.left) {
           this.incrementScore();
           pipe.isScored = true;
         }
 
         //check if a pipe needs to be killed
-        if(pipe.length && pipe.children[pipe.length-1].right < 0) {
+        if(pipe.length && pipe.children[0].right < 0) {
           pipe.kill();
-          pipe.isScored = false;
         }    
 
       }, this);
 
       if(this.cursors.up.isDown || this.game.input.activePointer.isDown) {
         this.playerJump();
+        if (!this.fartSound.isPlaying) {
+          this.fartSound.play();
+        }
       }
 
-      if(this.currentPipe.length && this.currentPipe.children[this.currentPipe.length-1].right < this.game.world.width) {
+      if(this.currentPipe.length && this.currentPipe.children[0].right < this.game.world.width) {
         this.createPipe();
       }
       
@@ -100,47 +102,28 @@ FartyTurd.GameState = {
     this.fartCountLabel.text = this.currentScore;
   },
   playerJump: function(){
-    this.player.body.velocity.y = -300;
+    this.player.body.velocity.y = -150;
   },
   createPipe: function(){
     var nextPipeData = this.generateRandomPipe();
+      
+    this.currentPipe = this.pipePool.getFirstDead();
     
-    if(nextPipeData) {
-      
-      this.currentPipe = this.pipePool.getFirstDead();
-      
-      if(!this.currentPipe) {
-        this.currentPipe = new FartyTurd.Pipe(this.game, this.floorPool, nextPipeData.numTiles, this.game.world.width + nextPipeData.separation, nextPipeData.y, -this.levelSpeed);   
-      }
-      else {
-        this.currentPipe.configure(nextPipeData.numTiles, this.game.world.width + nextPipeData.separation, nextPipeData.y, -this.levelSpeed);   
-      }
-
-      this.pipePool.add(this.currentPipe);
-
+    if(!this.currentPipe) {
+      this.currentPipe = new FartyTurd.Pipe(this.game, this.game.world.width + nextPipeData.separation, 0, -this.levelSpeed);   
+    } else {
+      this.currentPipe.configure(this.game.world.width + nextPipeData.separation, 0, -this.levelSpeed);   
     }
+
+    this.pipePool.add(this.currentPipe);
   },
   generateRandomPipe: function() {
-    
     var data = {};
     
     //distance from the previous pipe
     var minSeparation = 60;
     var maxSeparation = 200;
     data.separation = minSeparation + Math.random() * (maxSeparation - minSeparation);
-    
-    //y in regards to the previous pipe
-    var minDifY = -120;
-    var maxDifY = 120;    
-    
-    data.y = this.currentPipe.children[0].y + minDifY + Math.random() * (maxDifY - minDifY);
-    data.y = Math.max(150, data.y);
-    data.y = Math.min(this.game.world.height - 50, data.y);
-        
-    //number of tiles
-    var minTiles = 1;
-    var maxTiles = 5;
-    data.numTiles = minTiles + Math.random() * (maxTiles - minTiles);
       
     return data;
   },

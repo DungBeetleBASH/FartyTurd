@@ -1,56 +1,44 @@
 var FartyTurd = FartyTurd || {};
 
-FartyTurd.Pipe = function(game, floorPool, numTiles, x, y, speed) {
+FartyTurd.Pipe = function(game, x, y, speed) {
   Phaser.Group.call(this, game);
   
   this.tileSize = 40;
   this.game = game;
   this.enableBody = true;
-  this.floorPool = floorPool;
-  
-  this.configure(numTiles, x, y, speed);  
+  this.isScored = false;
+  this.createPipe(x);
+
+  this.configure(x, y, speed);  
 };
 
 FartyTurd.util.extend(FartyTurd.Pipe, Phaser.Group);
 
-FartyTurd.Pipe.prototype.configure = function(numTiles, x, y, speed) {
+FartyTurd.Pipe.prototype.createPipe = function(x) {
+  var pipeParts = [];
+  pipeParts[0] = new Phaser.Sprite(this.game, x, 0, 'pipe');
+  pipeParts[0].height = 60;
+  pipeParts[1] = new Phaser.Sprite(this.game, x, 60, 'pipe-down');
+  pipeParts[2] = new Phaser.Sprite(this.game, x, 180, 'pipe-up');
+  pipeParts[3] = new Phaser.Sprite(this.game, x, 206, 'pipe');
+  pipeParts[3].height = this.game.height - 206;
+  this.addMultiple(pipeParts);
+};
+
+FartyTurd.Pipe.prototype.configure = function(x, y, speed) {
   
   //make alive
-  this.alive = true;  
-  
-  var i = 0;
-  while(i < numTiles){
-    
-    var floorTile = this.floorPool.getFirstExists(false);
-    
-    if(!floorTile) {
-      floorTile = new Phaser.Sprite(this.game, x, y + i * this.tileSize, 'floor');
-    }
-    else {
-      floorTile.reset(x, y + i * this.tileSize);
-    }
-      
-    this.add(floorTile);    
-    i++;
-  }
+  this.alive = true; 
+  this.isScored = false;
   
   //set physics properties
   this.setAll('body.immovable', true);
   this.setAll('body.allowGravity', false);
   this.setAll('body.velocity.x', speed);
+  this.setAll('x', x);
   
 };
 
 FartyTurd.Pipe.prototype.kill = function(){
-  this.alive = false;  
-  this.callAll('kill');
-  
-  var sprites = [];
-  this.forEach(function(tile){
-    sprites.push(tile);
-  }, this);
-  
-  sprites.forEach(function(tile){
-    this.floorPool.add(tile);
-  }, this);
+  this.alive = false;
 };
