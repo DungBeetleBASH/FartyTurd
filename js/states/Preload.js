@@ -18,7 +18,10 @@ FartyTurd.PreloadState = {
     this.load.image('background', 'assets/images/background.png');
     this.load.image('turd', 'assets/images/turd.png');
     this.load.image('fart', 'assets/images/fart.png');
-    this.load.audio('fartSound', ['assets/audio/fart.mp3', 'assets/audio/fart.ogg']);
+    this.load.audio('fartSound0', ['assets/audio/fart.mp3', 'assets/audio/fart.ogg']);
+    this.load.audio('fartSound1', ['assets/audio/fart2.mp3', 'assets/audio/fart2.ogg']);
+    this.load.audio('fartSound2', ['assets/audio/fart3.mp3', 'assets/audio/fart3.ogg']);
+    this.load.audio('fartSound3', ['assets/audio/fart4.mp3', 'assets/audio/fart4.ogg']);
   },
   create: function() {
     this.state.start('Game');

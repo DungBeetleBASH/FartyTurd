@@ -31,7 +31,7 @@ FartyTurd.GameState = {
     this.game.world.sendToBack(this.background);
             
     //create the player
-    this.player = this.add.sprite(50, 140, 'turd');
+    this.player = this.add.sprite(100, 140, 'turd');
     this.player.anchor.setTo(0.5);
     this.game.physics.arcade.enable(this.player);
     
@@ -42,30 +42,37 @@ FartyTurd.GameState = {
     this.currentPipe = new FartyTurd.Pipe(this.game, 250, 0, -this.levelSpeed, this.generateRandomPipe());
     this.pipePool.add(this.currentPipe);
 
-    this.fart = this.game.add.sprite(20, 170, 'fart');
+    this.fart = this.game.add.sprite(80, 170, 'fart');
     this.fart.customParams = {
       offset: {
-        x: -30,
-        y: 28
+        x: -25,
+        y: 23
       }
     };
     this.game.physics.arcade.enable(this.fart);
-    this.fart.allowGravity = false;
-    this.fart.body.velocity.x = -this.levelSpeed;
+    this.fart.alpha = 0.5;
+    this.fart.body.allowGravity = false;
     this.fart.anchor.setTo(0.5);
     this.fart.kill();
     
     //fart sound
-    this.fartSound = this.add.audio('fartSound');
-    this.fartSound.isPlaying = false;
-    this.fartSound.onPlay.add(function (s) {
-      s.isPlaying = true;
-      this.fart.reset(this.player.x + this.fart.customParams.offset.x, this.player.y + this.fart.customParams.offset.y);
-    }, this);
-    this.fartSound.onStop.add(function (s) {
-      s.isPlaying = false;
-      this.fart.kill();
-    }, this);
+
+    this.fartSounds = [];
+
+    for (var i = 0; i < 4; i++) {
+      var fartSound = this.add.audio('fartSound' + i);
+      fartSound.isPlaying = false;
+      fartSound.onPlay.add(function (s) {
+        s.isPlaying = true;
+        this.fart.reset(this.player.x + this.fart.customParams.offset.x, this.player.y + this.fart.customParams.offset.y);
+        this.fart.body.velocity.x = -this.levelSpeed;
+      }, this);
+      fartSound.onStop.add(function (s) {
+        s.isPlaying = false;
+        this.fart.kill();
+      }, this);
+      this.fartSounds.push(fartSound);
+    };
     
     this.createPipe();
     
@@ -96,8 +103,8 @@ FartyTurd.GameState = {
 
       if(this.cursors.up.isDown || this.game.input.activePointer.isDown) {
         this.playerJump();
-        if (!this.fartSound.isPlaying) {
-          this.fartSound.play();
+        if (!this.isFartSoundPlaying()) {
+          this.playFartSound();
         }
       }
 
@@ -111,6 +118,24 @@ FartyTurd.GameState = {
       }
     }
      
+  },
+  isFartSoundPlaying: function () {
+    var isPlaying = false;
+    this.fartSounds.some(function (fartSound) {
+      if (fartSound.isPlaying) {
+        isPlaying = true;
+        return true;
+      }
+    }, this);
+    return isPlaying;
+
+  },
+  playFartSound: function () {
+    var min = 0,
+        max = this.fartSounds.length,
+        index = Math.floor(Math.random() * (max - min)) + min;
+    this.fartSounds[index].play();
+
   },
   incrementScore: function () {
     this.currentScore++;
