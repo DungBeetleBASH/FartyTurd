@@ -25,8 +25,8 @@ FartyTurd.GameState = {
   create: function() {
     //moving background
     this.background = this.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'background');
-    this.background.tileScale.y = 2.5;
-    this.background.tileScale.x = 2.5;
+    this.background.tileScale.y = 2.75;
+    this.background.tileScale.x = 2.75;
     this.background.autoScroll(-this.levelSpeed/6, 0);
     this.game.world.sendToBack(this.background);
             
@@ -39,18 +39,33 @@ FartyTurd.GameState = {
     this.player.body.setSize(32, 24, 0, 0);
     
     //hard-code first pipe
-    this.currentPipe = new FartyTurd.Pipe(this.game, 250, 0, -this.levelSpeed);
+    this.currentPipe = new FartyTurd.Pipe(this.game, 250, 0, -this.levelSpeed, this.generateRandomPipe());
     this.pipePool.add(this.currentPipe);
+
+    this.fart = this.game.add.sprite(20, 170, 'fart');
+    this.fart.customParams = {
+      offset: {
+        x: -30,
+        y: 28
+      }
+    };
+    this.game.physics.arcade.enable(this.fart);
+    this.fart.allowGravity = false;
+    this.fart.body.velocity.x = -this.levelSpeed;
+    this.fart.anchor.setTo(0.5);
+    this.fart.kill();
     
     //fart sound
-    this.fartSound = this.add.audio('fart');
+    this.fartSound = this.add.audio('fartSound');
     this.fartSound.isPlaying = false;
     this.fartSound.onPlay.add(function (s) {
       s.isPlaying = true;
-    });
+      this.fart.reset(this.player.x + this.fart.customParams.offset.x, this.player.y + this.fart.customParams.offset.y);
+    }, this);
     this.fartSound.onStop.add(function (s) {
       s.isPlaying = false;
-    });
+      this.fart.kill();
+    }, this);
     
     this.createPipe();
     
@@ -110,9 +125,9 @@ FartyTurd.GameState = {
     this.currentPipe = this.pipePool.getFirstDead();
     
     if(!this.currentPipe) {
-      this.currentPipe = new FartyTurd.Pipe(this.game, this.game.world.width + nextPipeData.separation, 0, -this.levelSpeed);   
+      this.currentPipe = new FartyTurd.Pipe(this.game, this.game.world.width + nextPipeData.separation, 0, -this.levelSpeed, nextPipeData);   
     } else {
-      this.currentPipe.configure(this.game.world.width + nextPipeData.separation, 0, -this.levelSpeed);   
+      this.currentPipe.configure(this.game.world.width + nextPipeData.separation, 0, -this.levelSpeed, nextPipeData);   
     }
 
     this.pipePool.add(this.currentPipe);
@@ -121,9 +136,14 @@ FartyTurd.GameState = {
     var data = {};
     
     //distance from the previous pipe
-    var minSeparation = 60;
-    var maxSeparation = 200;
+    var minSeparation = 50;
+    var maxSeparation = 180;
     data.separation = minSeparation + Math.random() * (maxSeparation - minSeparation);
+
+    // gap size
+    var minSize = 80;
+    var maxSize = 130;
+    data.gapSize = minSize + Math.random() * (maxSize - minSize);
       
     return data;
   },

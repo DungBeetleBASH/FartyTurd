@@ -1,15 +1,16 @@
 var FartyTurd = FartyTurd || {};
 
-FartyTurd.Pipe = function(game, x, y, speed) {
+FartyTurd.Pipe = function(game, x, y, speed, pipeData) {
   Phaser.Group.call(this, game);
   
   this.tileSize = 40;
   this.game = game;
   this.enableBody = true;
   this.isScored = false;
+  this.pipeData = pipeData;
   this.createPipe(x);
 
-  this.configure(x, y, speed);  
+  this.configure(x, y, speed, pipeData);  
 };
 
 FartyTurd.util.extend(FartyTurd.Pipe, Phaser.Group);
@@ -25,7 +26,17 @@ FartyTurd.Pipe.prototype.createPipe = function(x) {
   this.addMultiple(pipeParts);
 };
 
-FartyTurd.Pipe.prototype.configure = function(x, y, speed) {
+FartyTurd.Pipe.prototype.configure = function(x, y, speed, pipeData) {
+  this.pipeData = pipeData;
+
+  this.children.forEach(function (part, i, parts) {
+    if (i === 2) {
+      part.y = parts[1].bottom + this.pipeData.gapSize;
+    }
+    if (i === 3) {
+      part.y = parts[2].bottom;
+    }
+  }, this);
   
   //make alive
   this.alive = true; 

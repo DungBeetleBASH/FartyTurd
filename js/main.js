@@ -1,6 +1,6 @@
 var FartyTurd = FartyTurd || {};
 
-FartyTurd.game = new Phaser.Game(480, 320, Phaser.CANVAS);
+FartyTurd.game = new Phaser.Game(480, 320, Phaser.AUTO);
 
 FartyTurd.game.state.add('Boot', FartyTurd.BootState);
 FartyTurd.game.state.add('Preload', FartyTurd.PreloadState);
