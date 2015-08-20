@@ -20,7 +20,7 @@ FartyTurd.GameState = {
     this.currentScore = 0;
     
     //level values
-    this.levelScoreBoundary = 10;
+    this.levelScoreBoundary = 3;
     this.levelSpeed = 100;
     this.minPipeSeparation = 50;
     this.maxPipeSeparation = 180;
@@ -150,11 +150,11 @@ FartyTurd.GameState = {
     }
   },
   levelUp: function () {
-    this.levelSpeed = this.levelSpeed + 10;
-    this.minPipeSeparation = this.minPipeSeparation + 5;
-    this.maxPipeSeparation = this.maxPipeSeparation - 5;
-    this.minPipeGapSize = this.minPipeGapSize + 5;
-    this.maxPipeGapSize = this.maxPipeGapSize - 5;
+    this.levelSpeed = this.levelSpeed++;
+    this.minPipeSeparation = Math.max(10, this.minPipeSeparation - 1);
+    this.maxPipeSeparation = Math.min(180, this.maxPipeSeparation - 1);
+    this.minPipeGapSize = Math.max(80, this.minPipeGapSize - 1);
+    this.maxPipeGapSize = Math.min(130, this.maxPipeGapSize - 1);
 
   },
   playerJump: function(){
@@ -180,6 +180,7 @@ FartyTurd.GameState = {
     };
   },
   gameOver: function(){
+    this.explodeTurd();
     this.player.kill();    
     this.updateHighscore();
     
@@ -219,6 +220,14 @@ FartyTurd.GameState = {
     
     gameOverPanel.start();
     
+  },
+  explodeTurd: function () {
+    var emitter = this.game.add.emitter(this.player.x, this.player.y, 100);
+    emitter.makeParticles('turdParticle');
+    emitter.minParticleSpeed.setTo(-200, -200);
+    emitter.maxParticleSpeed.setTo(200, 200);
+    emitter.gravity = 0;
+    emitter.start(true, 500, null, 100);
   },
   restart: function(){
     //current bug with tileSprite on v2.3, have to manually remove the sprites from the world before launching a different state
