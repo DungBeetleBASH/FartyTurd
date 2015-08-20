@@ -204,6 +204,9 @@ FartyTurd.GameState = {
       
       var style = {font: '30px Arial', fill: '#fff'};
       this.add.text(this.game.width/2, this.game.height/2, 'GAME OVER', style).anchor.setTo(0.5);
+
+      style = {font: '15px Arial', fill: '#fff'};
+      this.add.text(this.game.width/2, this.game.height/2 + 22, 'Now wash your hands', style).anchor.setTo(0.5);
       
       style = {font: '20px Arial', fill: '#fff'};
       this.add.text(this.game.width/2, this.game.height/2 + 50, 'High score: ' + this.highScore, style).anchor.setTo(0.5);
