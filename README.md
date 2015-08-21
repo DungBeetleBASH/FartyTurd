@@ -1,2 +1,2 @@
 # FartyTurd
-A Flappy BIrd clone
+A Flappy Bird clone
