@@ -48,10 +48,14 @@ FartyTurd.GameState = {
     this.game.physics.arcade.enable(this.player);
 
     // create the turdParticle emitter
-    this.turdExplosion = this.game.add.emitter(0, 0, 100);
+    this.turdExplosion = this.game.add.emitter(0, 0, 200);
     this.turdExplosion.makeParticles('turdParticle');
     this.turdExplosion.minParticleSpeed.setTo(-200, -200);
     this.turdExplosion.maxParticleSpeed.setTo(200, 200);
+    this.turdExplosion.minParticleAlpha = 0.4;
+    this.turdExplosion.maxParticleAlpha = 0.8;
+    this.turdExplosion.minParticleScale = 0.5;
+    this.turdExplosion.maxParticleScale = 2;
     this.turdExplosion.gravity = 0;
 
     //change player bounding box
@@ -246,7 +250,7 @@ FartyTurd.GameState = {
   explodeTurd: function () {
     this.turdExplosion.x = this.player.x;
     this.turdExplosion.y = this.player.y;
-    this.turdExplosion.explode(500, 100);
+    this.turdExplosion.explode(750, 200);
   },
   restart: function(){
     //current bug with tileSprite on v2.3, have to manually remove the sprites from the world before launching a different state
