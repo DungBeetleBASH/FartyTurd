@@ -82,6 +82,8 @@ FartyTurd.GameState = {
       this.fartSounds.push(fartSound);
     }
 
+    this.splatSound = this.add.audio('splat');
+
     this.createPipe();
 
     //show number of coins
@@ -191,6 +193,7 @@ FartyTurd.GameState = {
     };
   },
   gameOver: function() {
+    this.splatSound.play();
     this.explodeTurd();
     this.player.kill();
     this.updateHighscore();
