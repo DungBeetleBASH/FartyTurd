@@ -3,6 +3,9 @@ var FartyTurd = FartyTurd || {};
 FartyTurd.GameState = {
 
   init: function() {
+    //references to config
+    this.styles = FartyTurd.config.GameStateStyles;
+    this.strings = FartyTurd.config.GameStateStrings;
     //pool of pipes
     this.pipePool = this.add.group();
     //gravity
@@ -22,7 +25,7 @@ FartyTurd.GameState = {
     this.createFartSounds();
     this.splatSound = this.add.audio('splat');
     this.createPipe();
-    this.fartCountLabel = this.add.text(10, 20, '0', FartyTurd.config.GameStateStyles.fartCountLabel);
+    this.fartCountLabel = this.add.text(10, 20, this.strings.fartCount, this.styles.fartCount);
   },
   createBackground: function () {
     this.background = this.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'background');
@@ -174,8 +177,12 @@ FartyTurd.GameState = {
     this.explodeTurd();
     this.player.kill();
     this.updateHighscore();
+    this.displayGameOverPanel();
 
-    //game over overlay
+  },
+  displayGameOverPanel: function() {
+    var gameOverPanel = {};
+
     this.overlay = this.add.bitmapData(this.game.width, this.game.height);
     this.overlay.ctx.fillStyle = '#000';
     this.overlay.ctx.fillRect(0, 0, this.game.width, this.game.height);
@@ -185,37 +192,24 @@ FartyTurd.GameState = {
     this.panel.alpha = 0.55;
 
     //overlay raising tween animation
-    var gameOverPanel = this.add.tween(this.panel);
+    gameOverPanel = this.add.tween(this.panel);
     gameOverPanel.to({y: 0}, 600);
 
     //stop all movement after the overlay reaches the top
     gameOverPanel.onComplete.add(function(){
       this.background.stopScroll();
-
-      var style = {font: '30px Arial', fill: '#fff'};
-      this.add.text(this.game.width/2, this.game.height/2 - 40, 'GAME OVER', style).anchor.setTo(0.5);
-
-      style = {font: '15px Arial', fill: '#fff'};
-      this.add.text(this.game.width/2, this.game.height/2 - 10, 'Now wash your hands', style).anchor.setTo(0.5);
-
-      style = {font: '20px Arial', fill: '#fff'};
-      this.add.text(this.game.width/2, this.game.height/2 + 50, 'High score: ' + this.highScore, style).anchor.setTo(0.5);
-
-      this.add.text(this.game.width/2, this.game.height/2 + 80, 'Your score: ' + this.currentScore, style).anchor.setTo(0.5);
-
-      style = {font: '10px Arial', fill: '#fff'};
-      this.add.text(this.game.width/2, this.game.height/2 + 120, 'Tap to play again', style).anchor.setTo(0.5);
-
+      this.add.text(this.game.width/2, this.game.height/2 - 40, this.strings.gameOver, this.styles.gameOver).anchor.setTo(0.5);
+      this.add.text(this.game.width/2, this.game.height/2 - 10, this.strings.gameOverSubtitle, this.styles.gameOverSubtitle).anchor.setTo(0.5);
+      this.add.text(this.game.width/2, this.game.height/2 + 50, this.strings.highScore + this.highScore, this.styles.score).anchor.setTo(0.5);
+      this.add.text(this.game.width/2, this.game.height/2 + 80, this.strings.currentScore + this.currentScore, this.styles.score).anchor.setTo(0.5);
+      this.add.text(this.game.width/2, this.game.height/2 + 120, this.strings.tap, this.styles.tap).anchor.setTo(0.5);
       this.game.input.onDown.addOnce(this.restart, this);
       this.cursors.up.onDown.addOnce(this.restart, this);
-
-
     }, this);
 
     gameOverPanel.start();
-
   },
-  createTurdExplosion: function () {
+  createTurdExplosion: function() {
     this.turdExplosion = this.game.add.emitter(0, 0, 200);
     this.turdExplosion.makeParticles('turdParticle');
     this.turdExplosion.minParticleSpeed.setTo(-200, -200);
