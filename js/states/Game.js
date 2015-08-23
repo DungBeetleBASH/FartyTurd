@@ -48,15 +48,7 @@ FartyTurd.GameState = {
     this.game.physics.arcade.enable(this.player);
 
     // create the turdParticle emitter
-    this.turdExplosion = this.game.add.emitter(0, 0, 200);
-    this.turdExplosion.makeParticles('turdParticle');
-    this.turdExplosion.minParticleSpeed.setTo(-200, -200);
-    this.turdExplosion.maxParticleSpeed.setTo(200, 200);
-    this.turdExplosion.minParticleAlpha = 0.4;
-    this.turdExplosion.maxParticleAlpha = 0.8;
-    this.turdExplosion.minParticleScale = 0.5;
-    this.turdExplosion.maxParticleScale = 2;
-    this.turdExplosion.gravity = 0;
+    this.createTurdExplosion();
 
     //change player bounding box
     this.player.body.setSize(32, 24, 0, 0);
@@ -73,7 +65,7 @@ FartyTurd.GameState = {
       }
     };
     this.game.physics.arcade.enable(this.fart);
-    this.fart.alpha = 0.5;
+    this.fart.alpha = 0.4;
     this.fart.body.allowGravity = false;
     this.fart.anchor.setTo(0.5);
     this.fart.kill();
@@ -101,13 +93,13 @@ FartyTurd.GameState = {
     this.fartCountLabel = this.add.text(10, 20, '0', style);
   },
   onSoundPlay: function (sound) {
-    sound.isPlaying = true;
     this.fart.reset(this.player.x + this.fart.customParams.offset.x, this.player.y + this.fart.customParams.offset.y);
     this.fart.body.velocity.x = -this.levelSpeed;
+    sound.isPlaying = true;
   },
   onSoundStop: function (sound) {
-    sound.isPlaying = false;
     this.fart.kill();
+    sound.isPlaying = false;
   },
   update: function() {
     if(this.player.alive) {
@@ -226,10 +218,10 @@ FartyTurd.GameState = {
       this.background.stopScroll();
 
       var style = {font: '30px Arial', fill: '#fff'};
-      this.add.text(this.game.width/2, this.game.height/2, 'GAME OVER', style).anchor.setTo(0.5);
+      this.add.text(this.game.width/2, this.game.height/2 - 40, 'GAME OVER', style).anchor.setTo(0.5);
 
       style = {font: '15px Arial', fill: '#fff'};
-      this.add.text(this.game.width/2, this.game.height/2 + 22, 'Now wash your hands', style).anchor.setTo(0.5);
+      this.add.text(this.game.width/2, this.game.height/2 - 10, 'Now wash your hands', style).anchor.setTo(0.5);
 
       style = {font: '20px Arial', fill: '#fff'};
       this.add.text(this.game.width/2, this.game.height/2 + 50, 'High score: ' + this.highScore, style).anchor.setTo(0.5);
@@ -240,12 +232,24 @@ FartyTurd.GameState = {
       this.add.text(this.game.width/2, this.game.height/2 + 120, 'Tap to play again', style).anchor.setTo(0.5);
 
       this.game.input.onDown.addOnce(this.restart, this);
+      this.cursors.up.onDown.addOnce(this.restart, this);
 
 
     }, this);
 
     gameOverPanel.start();
 
+  },
+  createTurdExplosion: function () {
+    this.turdExplosion = this.game.add.emitter(0, 0, 200);
+    this.turdExplosion.makeParticles('turdParticle');
+    this.turdExplosion.minParticleSpeed.setTo(-200, -200);
+    this.turdExplosion.maxParticleSpeed.setTo(200, 200);
+    this.turdExplosion.minParticleAlpha = 0.4;
+    this.turdExplosion.maxParticleAlpha = 0.8;
+    this.turdExplosion.minParticleScale = 0.5;
+    this.turdExplosion.maxParticleScale = 2;
+    this.turdExplosion.gravity = 0;
   },
   explodeTurd: function () {
     this.turdExplosion.x = this.player.x;
