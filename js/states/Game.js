@@ -37,8 +37,8 @@ FartyTurd.GameState = {
       i;
     //moving background
     this.background = this.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'background');
-    this.background.tileScale.y = 2.75;
-    this.background.tileScale.x = 2.75;
+    this.background.tileScale.y = 3;
+    this.background.tileScale.x = 3;
     this.background.autoScroll(-this.levelSpeed/6, 0);
     this.game.world.sendToBack(this.background);
 
@@ -84,10 +84,6 @@ FartyTurd.GameState = {
 
     this.createPipe();
 
-    //moving ground
-    this.ground = this.add.tileSprite(0, this.game.world.height - 30, this.game.world.width, 30, 'ground');
-    this.ground.autoScroll(-this.levelSpeed/2, 0);
-
     //show number of coins
     style = {font: '30px Arial', fill: '#fff'};
     this.fartCountLabel = this.add.text(10, 20, '0', style);
@@ -130,7 +126,7 @@ FartyTurd.GameState = {
       }
 
       //check if the player needs to die
-      if(this.player.bottom >= this.ground.top) {
+      if(this.player.bottom >= this.game.world.height) {
         this.gameOver();
       }
     }
@@ -210,11 +206,10 @@ FartyTurd.GameState = {
 
     //overlay raising tween animation
     var gameOverPanel = this.add.tween(this.panel);
-    gameOverPanel.to({y: 0}, 500);
+    gameOverPanel.to({y: 0}, 600);
 
     //stop all movement after the overlay reaches the top
     gameOverPanel.onComplete.add(function(){
-      this.ground.stopScroll();
       this.background.stopScroll();
 
       var style = {font: '30px Arial', fill: '#fff'};
@@ -260,7 +255,6 @@ FartyTurd.GameState = {
     //current bug with tileSprite on v2.3, have to manually remove the sprites from the world before launching a different state
     //http://www.html5gamedevs.com/topic/13843-events-linger-after-remove-and-destroy/
     this.game.world.remove(this.background);
-    this.game.world.remove(this.ground);
 
     this.game.state.start('Game');
   },

@@ -14,7 +14,6 @@ FartyTurd.PreloadState = {
     this.load.image('pipe', 'assets/images/pipe.png');
     this.load.image('pipe-up', 'assets/images/pipe-up.png');
     this.load.image('pipe-down', 'assets/images/pipe-down.png');
-    this.load.image('ground', 'assets/images/ground.png');
     this.load.image('background', 'assets/images/background.png');
     this.load.image('turd', 'assets/images/turd.png');
     this.load.image('turdParticle', 'assets/images/turdParticle.png');

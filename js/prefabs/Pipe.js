@@ -6,7 +6,7 @@ FartyTurd.Pipe = function(game, x, y, speed, pipeData) {
   this.game = game;
   this.enableBody = true;
   this.isScored = false;
-  this.totalHeight = this.game.world.height - 30;
+  this.totalHeight = this.game.world.height;
   this.pipeData = pipeData;
   this.createPipe();
 
