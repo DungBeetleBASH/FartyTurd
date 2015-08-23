@@ -14,8 +14,17 @@ FartyTurd.GameState = {
     //enable cursor keys
     this.cursors = this.game.input.keyboard.createCursorKeys();
 
-    //Add values defined in config
-    FartyTurd.util.mixin(this, FartyTurd.config.GameState);
+    this.currentScore = 0;
+    this.levelScoreBoundary = 10;
+    this.levelSpeed = 100;
+    this.minPipeSeparation = 50;
+    this.maxPipeSeparation = 180;
+    this.pipeConfig = {
+      maxHeight: 100,
+      minHeight: 20,
+      maxGap: 130,
+      minGap: 80
+    };
   },
   create: function() {
     this.createBackground();
@@ -135,14 +144,13 @@ FartyTurd.GameState = {
     }
   },
   levelUp: function () {
-    this.levelSpeed = this.levelSpeed++;
-    this.minPipeSeparation = Math.max(10, this.minPipeSeparation - 2);
+    this.levelSpeed++;
     this.maxPipeSeparation = Math.min(180, this.maxPipeSeparation - 2);
+    this.minPipeSeparation = Math.max(10, this.minPipeSeparation - 2);
     this.pipeConfig.maxHeight = Math.min(100, this.pipeConfig.maxHeight - 2);
     this.pipeConfig.minHeight = Math.max(20, this.pipeConfig.minHeight - 2);
     this.pipeConfig.maxGap = Math.min(130, this.pipeConfig.maxGap - 2);
     this.pipeConfig.minGap = Math.max(80, this.pipeConfig.minGap - 2);
-
   },
   playerJump: function() {
     if (this.player.top > 0) {
