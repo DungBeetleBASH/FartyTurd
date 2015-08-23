@@ -3,60 +3,41 @@ var FartyTurd = FartyTurd || {};
 FartyTurd.GameState = {
 
   init: function() {
-
     //pool of pipes
     this.pipePool = this.add.group();
-
     //gravity
     this.game.physics.arcade.gravity.y = 1000;
 
-    //max jump distance
-    this.maxJumpDistance = 120;
-
-    //move player with up key
+    //enable cursor keys
     this.cursors = this.game.input.keyboard.createCursorKeys();
 
-    //score
-    this.currentScore = 0;
-
-    //level values
-    this.levelScoreBoundary = 10;
-    this.levelSpeed = 100;
-    this.minPipeSeparation = 50;
-    this.maxPipeSeparation = 180;
-    this.pipeConfig = {
-      maxHeight: 100,
-      minHeight: 20,
-      maxGap: 130,
-      minGap: 80
-    };
+    //Add values defined in config
+    FartyTurd.util.mixin(this, FartyTurd.config.GameState);
   },
   create: function() {
-    var fartSound,
-      style,
-      i;
-    //moving background
+    this.createBackground();
+    this.createPlayer();
+    this.createTurdExplosion();
+    this.createFart();
+    this.createFartSounds();
+    this.splatSound = this.add.audio('splat');
+    this.createPipe();
+    this.fartCountLabel = this.add.text(10, 20, '0', FartyTurd.config.GameStateStyles.fartCountLabel);
+  },
+  createBackground: function () {
     this.background = this.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'background');
     this.background.tileScale.y = 3;
     this.background.tileScale.x = 3;
     this.background.autoScroll(-this.levelSpeed/6, 0);
     this.game.world.sendToBack(this.background);
-
-    //create the player
+  },
+  createPlayer: function () {
     this.player = this.add.sprite(100, 140, 'turd');
     this.player.anchor.setTo(0.5);
     this.game.physics.arcade.enable(this.player);
-
-    // create the turdParticle emitter
-    this.createTurdExplosion();
-
-    //change player bounding box
     this.player.body.setSize(32, 24, 0, 0);
-
-    //hard-code first pipe
-    this.currentPipe = new FartyTurd.Pipe(this.game, 250, 0, -this.levelSpeed, this.generateRandomPipe());
-    this.pipePool.add(this.currentPipe);
-
+  },
+  createFart: function () {
     this.fart = this.game.add.sprite(80, 170, 'fart');
     this.fart.customParams = {
       offset: {
@@ -69,8 +50,10 @@ FartyTurd.GameState = {
     this.fart.body.allowGravity = false;
     this.fart.anchor.setTo(0.5);
     this.fart.kill();
-
-    //fart sound
+  },
+  createFartSounds: function () {
+    var fartSound,
+      i;
 
     this.fartSounds = [];
 
@@ -81,14 +64,6 @@ FartyTurd.GameState = {
       fartSound.onStop.add(this.onSoundStop, this);
       this.fartSounds.push(fartSound);
     }
-
-    this.splatSound = this.add.audio('splat');
-
-    this.createPipe();
-
-    //show number of coins
-    style = {font: '30px Arial', fill: '#fff'};
-    this.fartCountLabel = this.add.text(10, 20, '0', style);
   },
   onSoundPlay: function (sound) {
     this.fart.reset(this.player.x + this.fart.customParams.offset.x, this.player.y + this.fart.customParams.offset.y);
@@ -118,9 +93,6 @@ FartyTurd.GameState = {
 
       if(this.cursors.up.isDown || this.game.input.activePointer.isDown) {
         this.playerJump();
-        if (!this.isFartSoundPlaying()) {
-          this.playFartSound();
-        }
       }
 
       if(this.currentPipe.length && this.currentPipe.children[0].right < this.game.world.width) {
@@ -169,8 +141,13 @@ FartyTurd.GameState = {
     this.pipeConfig.minGap = Math.max(80, this.pipeConfig.minGap - 2);
 
   },
-  playerJump: function(){
-    this.player.body.velocity.y = -150;
+  playerJump: function() {
+    if (this.player.top > 0) {
+      this.player.body.velocity.y = -150;
+    }
+    if (!this.isFartSoundPlaying()) {
+      this.playFartSound();
+    }
   },
   createPipe: function(){
     var nextPipeData = this.generateRandomPipe();
