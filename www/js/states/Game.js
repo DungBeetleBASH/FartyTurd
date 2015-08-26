@@ -106,6 +106,8 @@ FartyTurd.GameState = {
       if(this.cursors.up.isDown || this.game.input.activePointer.isDown) {
         this.playerJump();
       }
+      
+      this.rotatePlayer();
 
       if(this.currentPipe.length && this.currentPipe.children[0].right < this.game.world.width) {
         this.createPipe();
@@ -159,6 +161,9 @@ FartyTurd.GameState = {
     if (!this.isFartSoundPlaying()) {
       this.playFartSound();
     }
+  },
+  rotatePlayer: function () {
+    this.player.rotation = (this.player.body.velocity.y > 0) ? 0.25 : -0.25;
   },
   createPipe: function(){
     var nextPipeData = this.generateRandomPipe();
