@@ -148,11 +148,11 @@ FartyTurd.GameState = {
   levelUp: function () {
     this.levelSpeed++;
     this.maxPipeSeparation = Math.min(180, this.maxPipeSeparation - 2);
-    this.minPipeSeparation = Math.max(10, this.minPipeSeparation - 2);
-    this.pipeConfig.maxHeight = Math.min(100, this.pipeConfig.maxHeight - 2);
+    this.minPipeSeparation = Math.max(10, this.minPipeSeparation + 2);
+    this.pipeConfig.maxHeight = Math.min(100, this.pipeConfig.maxHeight + 2);
     this.pipeConfig.minHeight = Math.max(20, this.pipeConfig.minHeight - 2);
     this.pipeConfig.maxGap = Math.min(130, this.pipeConfig.maxGap - 2);
-    this.pipeConfig.minGap = Math.max(80, this.pipeConfig.minGap - 2);
+    this.pipeConfig.minGap = Math.max(80, this.pipeConfig.minGap + 2);
   },
   playerJump: function() {
     if (this.player.top > 0) {
@@ -185,7 +185,7 @@ FartyTurd.GameState = {
       pipeGap: this.pipeConfig.minGap + Math.random() * (this.pipeConfig.maxGap - this.pipeConfig.minGap)
     };
     if (this.currentPipe && Math.abs(this.currentPipe.pipeData.upperPipeHeight - this.nextPipeData.upperPipeHeight) >= 100) {
-      this.nextPipeData.separation += 30;
+      this.nextPipeData.separation += 40;
     }
   },
   gameOver: function() {
@@ -193,7 +193,7 @@ FartyTurd.GameState = {
     this.explodeTurd();
     this.player.kill();
     this.updateHighscore();
-    this.displayGameOverPanel();
+    this.game.time.events.add(500, this.displayGameOverPanel, this);
 
   },
   displayGameOverPanel: function() {
