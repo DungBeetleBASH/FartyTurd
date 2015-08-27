@@ -17,10 +17,10 @@ FartyTurd.GameState = {
     this.currentScore = 0;
     this.levelScoreBoundary = 10;
     this.levelSpeed = 100;
-    this.minPipeSeparation = 50;
+    this.minPipeSeparation = 80;
     this.maxPipeSeparation = 180;
     this.pipeConfig = {
-      maxHeight: 100,
+      maxHeight: 260,
       minHeight: 20,
       maxGap: 130,
       minGap: 80
@@ -38,8 +38,8 @@ FartyTurd.GameState = {
   },
   createBackground: function () {
     this.background = this.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'background');
-    this.background.tileScale.y = 3;
-    this.background.tileScale.x = 3;
+    this.background.tileScale.y = 2;
+    this.background.tileScale.x = 2;
     this.background.autoScroll(-this.levelSpeed/6, 0);
     this.game.world.sendToBack(this.background);
   },
@@ -166,24 +166,27 @@ FartyTurd.GameState = {
     this.player.rotation = (this.player.body.velocity.y > 0) ? 0.25 : -0.25;
   },
   createPipe: function(){
-    var nextPipeData = this.generateRandomPipe();
+    this.generateNextPipe();
 
     this.currentPipe = this.pipePool.getFirstDead();
 
     if(!this.currentPipe) {
-      this.currentPipe = new FartyTurd.Pipe(this.game, this.game.world.width + nextPipeData.separation, 0, -this.levelSpeed, nextPipeData);
+      this.currentPipe = new FartyTurd.Pipe(this.game, this.game.world.width + this.nextPipeData.separation, 0, -this.levelSpeed, this.nextPipeData);
     } else {
-      this.currentPipe.configure(this.game.world.width + nextPipeData.separation, 0, -this.levelSpeed, nextPipeData);
+      this.currentPipe.configure(this.game.world.width + this.nextPipeData.separation, 0, -this.levelSpeed, this.nextPipeData);
     }
 
     this.pipePool.add(this.currentPipe);
   },
-  generateRandomPipe: function() {
-    return {
+  generateNextPipe: function() {
+    this.nextPipeData = {
       separation: this.minPipeSeparation + Math.random() * (this.maxPipeSeparation - this.minPipeSeparation),
       upperPipeHeight: this.pipeConfig.minHeight + Math.random() * (this.pipeConfig.maxHeight - this.pipeConfig.minHeight),
       pipeGap: this.pipeConfig.minGap + Math.random() * (this.pipeConfig.maxGap - this.pipeConfig.minGap)
     };
+    if (this.currentPipe && Math.abs(this.currentPipe.pipeData.upperPipeHeight - this.nextPipeData.upperPipeHeight) >= 100) {
+      this.nextPipeData.separation += 30;
+    }
   },
   gameOver: function() {
     this.splatSound.play();
