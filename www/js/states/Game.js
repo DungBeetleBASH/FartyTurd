@@ -15,7 +15,7 @@ FartyTurd.GameState = {
     this.cursors = this.game.input.keyboard.createCursorKeys();
 
     this.currentScore = 0;
-    this.levelScoreBoundary = 10;
+    this.levelScoreBoundary = 5;
     this.levelSpeed = 100;
     this.minPipeSeparation = 80;
     this.maxPipeSeparation = 180;
@@ -148,7 +148,7 @@ FartyTurd.GameState = {
     }
   },
   levelUp: function () {
-    this.levelSpeed++;
+    this.levelSpeed += 2;
     this.maxPipeSeparation = Math.max(50, this.maxPipeSeparation - 2);
     this.minPipeSeparation = Math.max(30, this.minPipeSeparation + 2);
     this.pipeConfig.maxHeight = Math.max(20, this.pipeConfig.maxHeight + 2);
