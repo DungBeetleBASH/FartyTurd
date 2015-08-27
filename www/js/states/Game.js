@@ -47,7 +47,7 @@ FartyTurd.GameState = {
     this.player = this.add.sprite(100, 140, 'turd');
     this.player.anchor.setTo(0.5);
     this.game.physics.arcade.enable(this.player);
-    this.player.body.setSize(32, 24, 0, 0);
+    this.player.body.setSize(30, 22, 0, 0);
   },
   createFart: function () {
     this.fart = this.game.add.sprite(80, 170, 'fart');
@@ -258,11 +258,11 @@ FartyTurd.GameState = {
       //save new high score
       localStorage.setItem('highScore', this.highScore);
     }
-  }
+  }/*,
 
 
-  /*render: function() {
+  render: function() {
     this.game.debug.body(this.player);
-    this.game.debug.bodyInfo(this.player, 0, 30);
+    //this.game.debug.bodyInfo(this.player, 0, 30);
   }*/
 };
