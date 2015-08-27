@@ -25,6 +25,8 @@ FartyTurd.GameState = {
       maxGap: 140,
       minGap: 90
     };
+
+    this.isFarting = false;
   },
   create: function() {
     this.createBackground();
@@ -82,11 +84,11 @@ FartyTurd.GameState = {
   onSoundPlay: function (sound) {
     this.fart.reset(this.player.x + this.fart.customParams.offset.x, this.player.y + this.fart.customParams.offset.y);
     this.fart.body.velocity.x = -this.levelSpeed;
-    sound.isPlaying = true;
+    this.isFarting = true;
   },
   onSoundStop: function (sound) {
     this.fart.kill();
-    sound.isPlaying = false;
+    this.isFarting = false;
   },
   update: function() {
     if(this.player.alive) {
@@ -122,22 +124,10 @@ FartyTurd.GameState = {
     }
 
   },
-  isFartSoundPlaying: function () {
-    var isPlaying = false;
-    this.fartSounds.some(function (fartSound) {
-      if (fartSound.isPlaying) {
-        isPlaying = true;
-        return true;
-      }
-    }, this);
-    return isPlaying;
-
-  },
   playFartSound: function () {
-    var min = 0,
-        max = this.fartSounds.length,
-        index = Math.floor(Math.random() * (max - min)) + min;
-    this.fartSounds[index].play();
+    //var index = Math.floor(Math.random() * (this.fartSounds.length));
+    //this.fartSounds[index].play();
+    this.fartSounds[Math.floor(Math.random() * (this.fartSounds.length))].play();
 
   },
   incrementScore: function () {
@@ -160,7 +150,7 @@ FartyTurd.GameState = {
     if (this.player.top > 0) {
       this.player.body.velocity.y = -150;
     }
-    if (!this.isFartSoundPlaying()) {
+    if (!this.isFarting) {
       this.playFartSound();
     }
   },
