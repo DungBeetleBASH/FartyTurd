@@ -22,8 +22,8 @@ FartyTurd.GameState = {
     this.pipeConfig = {
       maxHeight: 260,
       minHeight: 20,
-      maxGap: 130,
-      minGap: 80
+      maxGap: 140,
+      minGap: 90
     };
   },
   create: function() {
@@ -34,7 +34,9 @@ FartyTurd.GameState = {
     this.createFartSounds();
     this.splatSound = this.add.audio('splat');
     this.createPipe();
-    this.fartCountLabel = this.add.text(10, 20, this.strings.fartCount, this.styles.fartCount);
+    this.fartCountLabel = this.add.text(this.game.world.width / 2, this.game.world.height - 50, this.strings.fartCount, this.styles.fartCount);
+    this.fartCountLabel.anchor.setTo(0.5);
+    this.fartCountLabel.alpha = 0.7;
   },
   createBackground: function () {
     this.background = this.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'background');

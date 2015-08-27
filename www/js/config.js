@@ -3,7 +3,7 @@ var FartyTurd = FartyTurd || {};
 FartyTurd.config = {
 
 	GameStateStyles: {
-		fartCount: {font: '30px Arial', fill: '#fff'},
+		fartCount: {font: '50px Arial', fill: '#fff'},
 		gameOver: {font: '30px Arial', fill: '#fff'},
 		gameOverSubtitle: {font: '15px Arial', fill: '#fff'},
 		score: {font: '20px Arial', fill: '#fff'},
