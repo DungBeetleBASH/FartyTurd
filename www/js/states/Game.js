@@ -187,7 +187,7 @@ FartyTurd.GameState = {
       pipeGap: this.pipeConfig.minGap + Math.random() * (this.pipeConfig.maxGap - this.pipeConfig.minGap)
     };
     if (this.currentPipe && Math.abs(this.currentPipe.pipeData.upperPipeHeight - this.nextPipeData.upperPipeHeight) >= 100) {
-      this.nextPipeData.separation += 40;
+      this.nextPipeData.separation += 60;
     }
   },
   gameOver: function() {
