@@ -149,12 +149,12 @@ FartyTurd.GameState = {
   },
   levelUp: function () {
     this.levelSpeed++;
-    this.maxPipeSeparation = Math.min(180, this.maxPipeSeparation - 2);
-    this.minPipeSeparation = Math.max(10, this.minPipeSeparation + 2);
-    this.pipeConfig.maxHeight = Math.min(100, this.pipeConfig.maxHeight + 2);
-    this.pipeConfig.minHeight = Math.max(20, this.pipeConfig.minHeight - 2);
-    this.pipeConfig.maxGap = Math.min(130, this.pipeConfig.maxGap - 2);
-    this.pipeConfig.minGap = Math.max(80, this.pipeConfig.minGap + 2);
+    this.maxPipeSeparation = Math.max(50, this.maxPipeSeparation - 2);
+    this.minPipeSeparation = Math.max(30, this.minPipeSeparation + 2);
+    this.pipeConfig.maxHeight = Math.max(20, this.pipeConfig.maxHeight + 2);
+    //this.pipeConfig.minHeight = Math.max(20, this.pipeConfig.minHeight - 2);
+    this.pipeConfig.maxGap = Math.max(50, this.pipeConfig.maxGap - 2);
+    this.pipeConfig.minGap = Math.max(50, this.pipeConfig.minGap + 2);
   },
   playerJump: function() {
     if (this.player.top > 0) {
