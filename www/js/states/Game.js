@@ -92,20 +92,7 @@ FartyTurd.GameState = {
   },
   update: function() {
     if(this.player.alive) {
-      this.pipePool.forEachAlive(function(pipe){
-        this.game.physics.arcade.overlap(this.player, pipe, this.gameOver, null, this);
-
-        if(!pipe.isScored && pipe.length && pipe.children[0].right < this.player.left) {
-          this.incrementScore();
-          pipe.isScored = true;
-        }
-
-        //check if a pipe needs to be killed
-        if(pipe.length && pipe.children[0].right < 0) {
-          pipe.kill();
-        }
-
-      }, this);
+      this.pipePool.forEachAlive(this.checkEachPipe, this);
 
       if(this.cursors.up.isDown || this.game.input.activePointer.isDown) {
         this.playerJump();
@@ -121,6 +108,20 @@ FartyTurd.GameState = {
       if(this.player.bottom >= this.game.world.height) {
         this.gameOver();
       }
+    }
+
+  },
+  checkEachPipe: function(pipe){
+    this.game.physics.arcade.overlap(this.player, pipe, this.gameOver, null, this);
+
+    if(!pipe.isScored && pipe.length && pipe.children[0].right < this.player.left) {
+      this.incrementScore();
+      pipe.isScored = true;
+    }
+
+    //check if a pipe needs to be killed
+    if(pipe.length && pipe.children[0].right < 0) {
+      pipe.kill();
     }
 
   },
