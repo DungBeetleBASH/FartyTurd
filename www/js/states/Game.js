@@ -172,11 +172,13 @@ FartyTurd.GameState = {
     this.pipePool.add(this.currentPipe);
   },
   generateNextPipe: function() {
-    this.nextPipeData = {
-      separation: this.minPipeSeparation + Math.random() * (this.maxPipeSeparation - this.minPipeSeparation),
-      upperPipeHeight: this.pipeConfig.minHeight + Math.random() * (this.pipeConfig.maxHeight - this.pipeConfig.minHeight),
-      pipeGap: this.pipeConfig.minGap + Math.random() * (this.pipeConfig.maxGap - this.pipeConfig.minGap)
-    };
+    if (!this.nextPipeData) {
+      this.nextPipeData = {};
+    }
+    this.nextPipeData.separation = this.minPipeSeparation + Math.random() * (this.maxPipeSeparation - this.minPipeSeparation);
+    this.nextPipeData.upperPipeHeight = this.pipeConfig.minHeight + Math.random() * (this.pipeConfig.maxHeight - this.pipeConfig.minHeight);
+    this.nextPipeData.pipeGap = this.pipeConfig.minGap + Math.random() * (this.pipeConfig.maxGap - this.pipeConfig.minGap);
+    
     if (this.currentPipe && Math.abs(this.currentPipe.pipeData.upperPipeHeight - this.nextPipeData.upperPipeHeight) >= 100) {
       this.nextPipeData.separation += 60;
     }
