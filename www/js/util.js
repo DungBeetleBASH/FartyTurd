@@ -9,7 +9,6 @@ FartyTurd.util = (function () {
 
 		},
 		mixin: function (receiver, giver, overwrite) {
-			var p;
 			if (giver && receiver) {
 				for (p in giver) {
 					if (giver.hasOwnProperty(p)) {
