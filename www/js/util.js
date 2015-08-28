@@ -1,6 +1,7 @@
 var FartyTurd = FartyTurd || {};
 
 FartyTurd.util = (function () {
+	var p;
 	return {
 		extend: function (child, parent) {
 			child.prototype = Object.create(parent.prototype);
@@ -16,6 +17,13 @@ FartyTurd.util = (function () {
 							receiver[p] = giver[p];
 						}
 					}
+				}
+			}
+		},
+		wipe: function (obj) {
+			for (p in obj) {
+				if (obj.hasOwnProperty(p)) {
+					delete obj[p];
 				}
 			}
 		}
