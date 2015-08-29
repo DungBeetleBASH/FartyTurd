@@ -35,6 +35,7 @@ FartyTurd.GameState = {
     this.createFart();
     this.createFartSounds();
     this.splatSound = this.add.audio('splat');
+    this.createReusablePipes();
     this.createPipe();
     this.fartCountLabel = this.add.text(this.game.world.width / 2, this.game.world.height - 50, this.strings.fartCount, this.styles.fartCount);
     this.fartCountLabel.anchor.setTo(0.5);
@@ -157,6 +158,14 @@ FartyTurd.GameState = {
   },
   rotatePlayer: function () {
     this.player.rotation = (this.player.body.velocity.y > 0) ? 0.25 : -0.25;
+  },
+  // To prevent early GC, 4 pipes are created.
+  // This needs some rework
+  createReusablePipes: function () {
+    var i;
+    for (i = 0; i < 4; i++) {
+      this.pipePool.add(new FartyTurd.Pipe(this.game, 0, 0, 0, {}));
+    }
   },
   createPipe: function(){
     this.generateNextPipe();
