@@ -36,10 +36,11 @@ FartyTurd.GameState = {
     this.createFartSounds();
     this.splatSound = this.add.audio('splat');
     this.createReusablePipes();
-    this.createPipe();
-    this.fartCountLabel = this.add.text(this.game.world.width / 2, this.game.world.height - 50, this.strings.fartCount, this.styles.fartCount);
+    this.createOverlayPanel();
+    this.fartCountLabel = this.add.text(this.game.world.width / 2, this.game.world.height - 50, "", this.styles.fartCount);
     this.fartCountLabel.anchor.setTo(0.5);
     this.fartCountLabel.alpha = 0.7;
+    this.showTapToStartOverlay();
   },
   createBackground: function () {
     this.background = this.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'background');
@@ -53,6 +54,16 @@ FartyTurd.GameState = {
     this.player.anchor.setTo(0.5);
     this.game.physics.arcade.enable(this.player);
     this.player.body.setSize(30, 22, 0, 0);
+    this.player.kill();
+  },
+  createOverlayPanel: function () {
+    this.overlay = this.add.bitmapData(this.game.width, this.game.height);
+    this.overlay.ctx.fillStyle = '#000';
+    this.overlay.ctx.fillRect(0, 0, this.game.width, this.game.height);
+
+    //sprite for the overlay
+    this.panel = this.add.sprite(0, 0, this.overlay);
+    this.panel.alpha = 0.55;
   },
   createFart: function () {
     this.fart = this.game.add.sprite(80, 170, 'fart');
@@ -91,24 +102,42 @@ FartyTurd.GameState = {
     this.fart.kill();
     this.isFarting = false;
   },
+  showTapToStartOverlay: function () {
+    this.tapToStartLabel = this.add.text(this.game.width/2, this.game.height/2 - 40, this.strings.tapToStart, this.styles.tapToStart);
+    this.tapToStartLabel.anchor.setTo(0.5);
+    this.tapToFartLabel = this.add.text(this.game.width/2, this.game.height/2 - 5, this.strings.tapToFart, this.styles.tapToFart);
+    this.tapToFartLabel.anchor.setTo(0.5);
+    this.hasStarted = false;
+  },
+  startGame: function () {
+    this.tapToStartLabel.destroy();
+    this.tapToFartLabel.destroy();
+    this.panel.kill();
+    this.fartCountLabel.text = "0";
+    this.createPipe();
+    this.player.reset(100, 140);
+    this.hasStarted = true;
+  },
   update: function() {
-    if(this.player.alive) {
+    if (this.player.alive && this.hasStarted) {
       this.pipePool.forEachAlive(this.checkEachPipe, this);
 
-      if(this.cursors.up.isDown || this.game.input.activePointer.isDown) {
+      if (this.cursors.up.isDown || this.game.input.activePointer.isDown) {
         this.playerJump();
       }
       
       this.rotatePlayer();
 
-      if(this.currentPipe.length && this.currentPipe.children[0].right < this.game.world.width) {
+      if (this.currentPipe.length && this.currentPipe.children[0].right < this.game.world.width) {
         this.createPipe();
       }
 
       //check if the player needs to die
-      if(this.player.bottom >= this.game.world.height) {
+      if (this.player.bottom >= this.game.world.height) {
         this.gameOver();
       }
+    } else if (!this.hasStarted && (this.cursors.up.isDown || this.game.input.activePointer.isDown)) {
+      this.startGame();
     }
 
   },
@@ -202,13 +231,7 @@ FartyTurd.GameState = {
   displayGameOverPanel: function() {
     var gameOverPanel = {};
 
-    this.overlay = this.add.bitmapData(this.game.width, this.game.height);
-    this.overlay.ctx.fillStyle = '#000';
-    this.overlay.ctx.fillRect(0, 0, this.game.width, this.game.height);
-
-    //sprite for the overlay
-    this.panel = this.add.sprite(0, this.game.height, this.overlay);
-    this.panel.alpha = 0.55;
+    this.panel.reset(0, this.game.height);
 
     //overlay raising tween animation
     gameOverPanel = this.add.tween(this.panel);
