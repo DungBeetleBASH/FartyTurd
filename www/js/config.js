@@ -21,6 +21,11 @@ FartyTurd.config = {
 		tap: 'Tap to play again',
 		tapToStart: 'Tap to Start',
 		tapToFart: 'Tap to Fart'
+	},
+
+	GameStateValues: {
+		numberOfSounds: 4,
+		startingPipes: 4
 	}
 
 };

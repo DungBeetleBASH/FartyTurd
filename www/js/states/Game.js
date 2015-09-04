@@ -6,6 +6,7 @@ FartyTurd.GameState = {
     //references to config
     this.styles = FartyTurd.config.GameStateStyles;
     this.strings = FartyTurd.config.GameStateStrings;
+    this.gameConfig = FartyTurd.config.GameStateValues;
     //pool of pipes
     this.pipePool = this.add.group();
     //gravity
@@ -81,22 +82,22 @@ FartyTurd.GameState = {
   },
   createFartSounds: function () {
     var fartSound,
+      numberOfSounds = this.gameConfig.numberOfSounds,
       i;
 
     this.fartSounds = [];
 
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < numberOfSounds; i++) {
       fartSound = this.add.audio('fartSound' + i);
-      fartSound.isPlaying = false;
       fartSound.onPlay.add(this.onSoundPlay, this);
       fartSound.onStop.add(this.onSoundStop, this);
       this.fartSounds.push(fartSound);
     }
   },
   onSoundPlay: function (sound) {
+    this.isFarting = true;
     this.fart.reset(this.player.x + this.fart.customParams.offset.x, this.player.y + this.fart.customParams.offset.y);
     this.fart.body.velocity.x = -this.levelSpeed;
-    this.isFarting = true;
   },
   onSoundStop: function (sound) {
     this.fart.kill();
@@ -159,7 +160,6 @@ FartyTurd.GameState = {
     //var index = Math.floor(Math.random() * (this.fartSounds.length));
     //this.fartSounds[index].play();
     this.fartSounds[Math.floor(Math.random() * (this.fartSounds.length))].play();
-
   },
   incrementScore: function () {
     this.currentScore++;
@@ -191,8 +191,10 @@ FartyTurd.GameState = {
   // To prevent early GC, 4 pipes are created.
   // This needs some rework
   createReusablePipes: function () {
-    var i;
-    for (i = 0; i < 4; i++) {
+    var startingPipes = this.gameConfig.startingPipes,
+      i;
+    // TODO: Fix this. Pipes are created alive and not reused.
+    for (i = 0; i < startingPipes; i++) {
       this.pipePool.add(new FartyTurd.Pipe(this.game, 0, 0, 0, {}));
     }
   },
@@ -288,7 +290,8 @@ FartyTurd.GameState = {
 
 
   render: function() {
-    this.game.debug.body(this.player);
+    //this.game.debug.soundInfo(this.fartSounds[0], 10, 20);
+    //this.game.debug.body(this.player);
     //this.game.debug.bodyInfo(this.player, 0, 30);
   }*/
 };
