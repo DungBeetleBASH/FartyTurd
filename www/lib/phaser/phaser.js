@@ -75585,7 +75585,8 @@ Phaser.Sound.prototype = {
     * @protected
     */
     onEndedHandler: function () {
-
+        
+        this._sound.onended = null;
         this.isPlaying = false;
         this.stop();
 
