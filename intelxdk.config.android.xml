@@ -17,5 +17,5 @@
 <preference name="android-targetSdkVersion" value="19"/>
 <preference name="android-installLocation" value="auto"/>
 <preference name="Fullscreen" value="true"/>
-<preference name="Orientation" value="landscape"/>
+<preference name="Orientation" value="portrait"/>
 <!--creationInfo:{"src":"https://appcenter.html5tools-software.intel.com/api/v2.0/redirect/projectrenderers/release-2015-ww32/jsapp/templates-phaser-landscape/sample.zip","projectTypeName":"com.intel.xdk.projecttype.jsapp"}--></widget>
