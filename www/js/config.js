@@ -25,7 +25,7 @@ FartyTurd.config = {
 
 	GameStateValues: {
 		numberOfSounds: 4,
-		startingPipes: 4
+		startingPipes: 3
 	}
 
 };

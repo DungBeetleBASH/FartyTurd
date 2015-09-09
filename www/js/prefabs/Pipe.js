@@ -48,6 +48,9 @@ FartyTurd.Pipe.prototype.configure = function(x, y, speed, pipeData) {
   }, this);
 
   //make alive
+  this.setAll('alive', true);
+  this.setAll('exists', true);
+  this.setAll('visible', true);
   this.alive = true;
   this.isScored = false;
 
@@ -59,6 +62,9 @@ FartyTurd.Pipe.prototype.configure = function(x, y, speed, pipeData) {
 
 };
 
-FartyTurd.Pipe.prototype.kill = function(){
+FartyTurd.Pipe.prototype.kill = function() {
+  this.setAll('alive', false);
+  this.setAll('exists', false);
+  this.setAll('visible', false);
   this.alive = false;
 };

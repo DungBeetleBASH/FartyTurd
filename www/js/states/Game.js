@@ -145,7 +145,7 @@ FartyTurd.GameState = {
   checkEachPipe: function(pipe){
     this.game.physics.arcade.overlap(this.player, pipe, this.gameOver, null, this);
 
-    if(!pipe.isScored && pipe.length && pipe.children[0].right < this.player.left) {
+    if(!pipe.isScored && pipe.length && pipe.children[0].right < this.player.right) {
       this.incrementScore();
       pipe.isScored = true;
     }
@@ -157,9 +157,8 @@ FartyTurd.GameState = {
 
   },
   playFartSound: function () {
-    //var index = Math.floor(Math.random() * (this.fartSounds.length));
-    //this.fartSounds[index].play();
-    this.fartSounds[Math.floor(Math.random() * (this.fartSounds.length))].play();
+    var index = Math.floor(Math.random() * (this.fartSounds.length));
+    this.fartSounds[index].play();
   },
   incrementScore: function () {
     this.currentScore++;
@@ -173,7 +172,6 @@ FartyTurd.GameState = {
     this.maxPipeSeparation = Math.max(50, this.maxPipeSeparation - 2);
     this.minPipeSeparation = Math.max(30, this.minPipeSeparation + 2);
     this.pipeConfig.maxHeight = Math.max(20, this.pipeConfig.maxHeight + 2);
-    //this.pipeConfig.minHeight = Math.max(20, this.pipeConfig.minHeight - 2);
     this.pipeConfig.maxGap = Math.max(50, this.pipeConfig.maxGap - 2);
     this.pipeConfig.minGap = Math.max(50, this.pipeConfig.minGap + 2);
   },
@@ -189,17 +187,18 @@ FartyTurd.GameState = {
     this.player.rotation = (this.player.body.velocity.y > 0) ? 0.25 : -0.25;
   },
   // To prevent early GC, 4 pipes are created.
-  // This needs some rework
   createReusablePipes: function () {
     var startingPipes = this.gameConfig.startingPipes,
+      pipe,
       i;
-    // TODO: Fix this. Pipes are created alive and not reused.
     for (i = 0; i < startingPipes; i++) {
-      this.pipePool.add(new FartyTurd.Pipe(this.game, 0, 0, 0, {}));
+      pipe = new FartyTurd.Pipe(this.game, 0, 0, 0, {});
+      pipe.kill();
+      this.pipePool.add(pipe);
     }
   },
   createPipe: function(){
-    this.generateNextPipe();
+    this.generateNextPipeData();
 
     this.currentPipe = this.pipePool.getFirstDead();
 
@@ -211,7 +210,7 @@ FartyTurd.GameState = {
 
     this.pipePool.add(this.currentPipe);
   },
-  generateNextPipe: function() {
+  generateNextPipeData: function() {
     this.nextPipeData = {
       separation: this.minPipeSeparation + Math.random() * (this.maxPipeSeparation - this.minPipeSeparation),
       upperPipeHeight: this.pipeConfig.minHeight + Math.random() * (this.pipeConfig.maxHeight - this.pipeConfig.minHeight),
