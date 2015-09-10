@@ -1,0 +1,272 @@
+{
+  "project": {
+    "projectSettingsVersion": "1.2",
+    "creationData": {
+      "projectTypeName": "com.intel.xdk.projecttype.jsapp",
+      "src": "https://appcenter.html5tools-software.intel.com/api/v2.0/redirect/projectrenderers/release-2015-ww32/jsapp/templates-phaser-landscape/sample.zip",
+      "projectGuid": "12894dd5-9204-48a6-968f-737dc3629c73",
+      "lastModifiedDate": 1441833673309,
+      "creationDate": 1440449282290
+    },
+    "sourceDirectory": "www",
+    "startFile": "index.html",
+    "projectFiles": {},
+    "projectDirectories": {},
+    "libraries": [],
+    "serviceMethods": [],
+    "gameAssetDirectory": "asset",
+    "gameMetadata": {
+      "gameEngineName": "phaser",
+      "gameEngineVersion": "2.1.1"
+    },
+    "projectTags": [
+      "XDK-game-app"
+    ],
+    "cordovaPluginsDirectory": "plugins",
+    "cordovaPlugins": [
+      {
+        "id": "org.apache.cordova.device",
+        "version": "0.2.13",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": []
+      },
+      {
+        "id": "org.apache.cordova.splashscreen",
+        "version": "0.3.5",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": []
+      },
+      {
+        "id": "org.apache.cordova.media",
+        "version": "0.2.15",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": []
+      }
+    ],
+    "buildConfigurations": {
+      "Android": {
+        "platform_": "android",
+        "runtime_": "Cordova 3.x",
+        "name_": "Android",
+        "preferences_": {
+          "android-minSdkVersion": "14",
+          "android-targetSdkVersion": "19",
+          "android-installLocation": "auto",
+          "Fullscreen": true,
+          "Orientation": "portrait"
+        },
+        "isActive_": true,
+        "appName_": "FartyTurd",
+        "appID_": "com.github.Pappa.FartyTurdAndroid",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [
+          {
+            "relPath": "icon.png",
+            "density": "hdpi",
+            "height": 72,
+            "width": 72
+          }
+        ],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "iosProvs_": [],
+        "cordovaCLIVersion_": "4.1.2",
+        "crosswalkVersion_": "11",
+        "appVersion_": "0.0.1",
+        "appDescription_": "A turd that farts.",
+        "appAuthor_": "Pappa",
+        "appVersionCode_": "1"
+      },
+      "Android-Crosswalk": {
+        "platform_": "android",
+        "runtime_": "Crosswalk with Cordova 3.x",
+        "name_": "Android-Crosswalk",
+        "preferences_": {
+          "android-minSdkVersion": "14",
+          "android-targetSdkVersion": "19",
+          "android-installLocation": "auto",
+          "Fullscreen": true,
+          "Orientation": "portrait"
+        },
+        "isActive_": true,
+        "appName_": "FartyTurd",
+        "appID_": "com.github.Pappa.FartyTurdCrosswalk",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [
+          {
+            "relPath": "icon.png",
+            "density": "hdpi",
+            "height": 72,
+            "width": 72
+          }
+        ],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "iosProvs_": [],
+        "cordovaCLIVersion_": "4.1.2",
+        "crosswalkVersion_": "11",
+        "appVersion_": "0.0.1",
+        "appDescription_": "A turd that farts.",
+        "appAuthor_": "Pappa",
+        "appVersionCode_": "1"
+      },
+      "iOS": {
+        "platform_": "ios",
+        "runtime_": "Cordova 3.x",
+        "name_": "iOS",
+        "preferences_": {
+          "ios-target": "6",
+          "ios-configuration": "adhoc",
+          "Fullscreen": true,
+          "Orientation": "landscape"
+        },
+        "isActive_": true,
+        "appName_": "FartyTurd2",
+        "appID_": "xdk.intel.phaser.js.project",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "iosProvs_": [],
+        "cordovaCLIVersion_": "4.1.2",
+        "crosswalkVersion_": "11",
+        "appVersion_": "0.0.1",
+        "appDescription_": "Use this template to start with a blank landscape Game from Phaser",
+        "appAuthor_": "Intel XDK"
+      },
+      "Windows8": {
+        "platform_": "windows8",
+        "runtime_": "Cordova 3.x",
+        "name_": "Windows8",
+        "preferences_": {
+          "windows-publisher-display-name": "",
+          "windows-publisher-id": "",
+          "Fullscreen": true,
+          "Orientation": "landscape"
+        },
+        "isActive_": true,
+        "appName_": "FartyTurd2",
+        "appID_": "xdk.intel.phaser.js.project",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "iosProvs_": [],
+        "cordovaCLIVersion_": "4.1.2",
+        "crosswalkVersion_": "11",
+        "appVersion_": "0.0.0.1",
+        "appDescription_": "Use this template to start with a blank landscape Game from Phaser",
+        "appAuthor_": "Intel XDK"
+      },
+      "WebApp": {
+        "platform_": "webapp",
+        "runtime_": "W3C",
+        "name_": "WebApp",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "FartyTurd2",
+        "appID_": "not.yet.specified",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appAuthor_": "Intel XDK",
+        "appVersion_": "0.0.1"
+      },
+      "Firefox": {
+        "platform_": "firefoxos",
+        "runtime_": "W3C on Firefox OS",
+        "name_": "Firefox",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "FartyTurd2",
+        "appID_": "not.yet.specified",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appAuthor_": "Intel XDK",
+        "appVersion_": "0.0.1"
+      },
+      "Chrome": {
+        "platform_": "chromeos",
+        "runtime_": "W3C on Chrome OS",
+        "name_": "Chrome",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "FartyTurd2",
+        "appID_": "not.yet.specified",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appAuthor_": "Intel XDK",
+        "appVersion_": "0.0.1"
+      },
+      "Facebook": {
+        "platform_": "facebook",
+        "runtime_": "W3C on Facebook",
+        "name_": "Facebook",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "FartyTurd2",
+        "appID_": "not.yet.specified",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appAuthor_": "Intel XDK",
+        "appVersion_": "0.0.1"
+      }
+    }
+  }
+}
