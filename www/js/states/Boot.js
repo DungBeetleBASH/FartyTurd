@@ -3,12 +3,6 @@ var FartyTurd = FartyTurd || {};
 //setting game configuration and loading the assets for the loading screen
 FartyTurd.BootState = {
   init: function() {
-    this.game.device.whenReady(function () {
-        if (navigator.splashscreen) {
-            navigator.splashscreen.hide();
-        }
-    }, this);
-      
     this.game.stage.backgroundColor = '#000';
 
     //scaling options
