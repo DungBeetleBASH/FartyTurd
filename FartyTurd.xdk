@@ -5,7 +5,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "https://appcenter.html5tools-software.intel.com/api/v2.0/redirect/projectrenderers/release-2015-ww32/jsapp/templates-phaser-landscape/sample.zip",
       "projectGuid": "12894dd5-9204-48a6-968f-737dc3629c73",
-      "lastModifiedDate": 1442259303673,
+      "lastModifiedDate": 1442260911046,
       "creationDate": 1440449282290
     },
     "sourceDirectory": "www",
@@ -134,7 +134,7 @@
         "iosProvs_": [],
         "cordovaCLIVersion_": "4.1.2",
         "crosswalkVersion_": "11",
-        "appVersion_": "0.0.2",
+        "appVersion_": "0.0.3",
         "appDescription_": "A turd that farts.",
         "appAuthor_": "Pappa",
         "appVersionCode_": "1"
@@ -160,19 +160,59 @@
         ],
         "icons_": [
           {
-            "relPath": "icon.png",
+            "relPath": "asset/icons/36.png",
+            "density": "ldpi",
+            "height": 36,
+            "width": 36
+          },
+          {
+            "relPath": "asset/icons/48.png",
+            "density": "mdpi",
+            "height": 48,
+            "width": 48
+          },
+          {
+            "relPath": "asset/icons/72.png",
             "density": "hdpi",
             "height": 72,
             "width": 72
+          },
+          {
+            "relPath": "asset/icons/96.png",
+            "density": "xhdpi",
+            "height": 96,
+            "width": 96
           }
         ],
-        "splashes_": [],
+        "splashes_": [
+          {
+            "relPath": "asset/splashscreens/xhdpi/splashscreen.9.png",
+            "density": "xhdpi",
+            "height": 960,
+            "width": 720,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "asset/splashscreens/hdpi/splashscreen.9.png",
+            "density": "hdpi",
+            "height": 640,
+            "width": 480,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "asset/splashscreens/mdpi/splashscreen.9.png",
+            "density": "ldpi",
+            "height": 426,
+            "width": 320,
+            "orientation": "portrait"
+          }
+        ],
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "iosProvs_": [],
         "cordovaCLIVersion_": "4.1.2",
         "crosswalkVersion_": "11",
-        "appVersion_": "0.0.2",
+        "appVersion_": "0.0.3",
         "appDescription_": "A turd that farts.",
         "appAuthor_": "Pappa",
         "appVersionCode_": "1"
