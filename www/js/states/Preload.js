@@ -25,6 +25,9 @@ FartyTurd.PreloadState = {
     this.load.audio('fartSound3', ['asset/audio/fart4.mp3', 'asset/audio/fart4.ogg']);
   },
   create: function() {
+    if (intel && intel.xdk && intel.xdk.device) {
+        intel.xdk.device.hideSplashScreen();   
+    }
     this.state.start('Game');
   }
 };
