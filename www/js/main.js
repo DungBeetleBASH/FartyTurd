@@ -3,36 +3,36 @@ var FartyTurd = FartyTurd || {};
 function onDeviceReady() {
     intel.xdk.device.setRotateOrientation("portrait");
     intel.xdk.device.setAutoRotate(false);
-    console.log("intel.xdk.device.ready");
+    //console.log("intel.xdk.device.ready");
 
     document.addEventListener("intel.xdk.device.suspend", function() {
         FartyTurd.game.paused = true;
-        console.log("intel.xdk.device.suspend");
+        //console.log("intel.xdk.device.suspend");
     }, false);
 
     document.addEventListener("intel.xdk.device.pause", function() {
         FartyTurd.game.paused = true;
-        console.log("intel.xdk.device.pause");
+        //console.log("intel.xdk.device.pause");
     }, false);
 
     document.addEventListener("intel.xdk.device.continue", function() {
         FartyTurd.game.paused = false;
-        console.log("intel.xdk.device.continue");
+        //console.log("intel.xdk.device.continue");
     }, false);
 
     document.addEventListener("intel.xdk.device.resume", function() {
         FartyTurd.game.paused = false;
-        console.log("intel.xdk.device.resume");
+        //console.log("intel.xdk.device.resume");
     }, false);
 
     document.addEventListener("pause", function() {
         FartyTurd.game.paused = true;
-        console.log("pause");
+        //console.log("pause");
     }, false);
 
     document.addEventListener("resume", function() {
         FartyTurd.game.paused = false;
-        console.log("resume");
+        //console.log("resume");
     }, false);
 }
 
