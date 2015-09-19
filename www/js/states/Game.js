@@ -142,6 +142,11 @@ FartyTurd.GameState = {
     }
 
   },
+  pauseUpdate: function () {
+      if (this.cursors.up.isDown || this.game.input.activePointer.isDown) {
+        this.game.paused = false;
+      }
+  },
   checkEachPipe: function(pipe){
     this.game.physics.arcade.overlap(this.player, pipe, this.gameOver, null, this);
 
