@@ -23,9 +23,6 @@ FartyTurd.BootState = {
       }
     }, this);
   },
-  preload: function() {
-    this.load.image('loadingBar', 'asset/images/loadingBar.png');
-  },
   create: function() {
     this.state.start('Preload');
   },

@@ -30,6 +30,7 @@ FartyTurd.GameState = {
     this.isFarting = false;
   },
   create: function() {
+    this.createAdBanner();
     this.createBackground();
     this.createPlayer();
     this.createTurdExplosion();
@@ -42,11 +43,10 @@ FartyTurd.GameState = {
     this.fartCountLabel.anchor.setTo(0.5);
     this.fartCountLabel.alpha = 0.7;
     this.showTapToStartOverlay();
-    this.createAdBanner();
   },
   createAdBanner: function () {
     if(FartyTurd.admobLoaded) {
-      AdMob.showBanner(AdMob.AD_POSITION.BOTTOM_CENTERED);
+      AdMob.showBanner(AdMob.AD_POSITION.TOP_CENTER);
     }
   },
   createBackground: function () {

@@ -3,13 +3,6 @@ var FartyTurd = FartyTurd || {};
 //loading the game assets
 FartyTurd.PreloadState = {
   preload: function() {
-    //show loading screen
-    this.preloadBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loadingBar');
-    this.preloadBar.anchor.setTo(0.5);
-    this.preloadBar.scale.setTo(3);
-
-    this.load.setPreloadSprite(this.preloadBar);
-
     //load game assets
     this.load.image('pipe', 'asset/images/pipe.png');
     this.load.image('pipe-up', 'asset/images/pipe-up.png');
@@ -25,6 +18,9 @@ FartyTurd.PreloadState = {
     this.load.audio('fartSound3', ['asset/audio/fart4.mp3', 'asset/audio/fart4.ogg']);
   },
   create: function() {
+    if (navigator && navigator.splashscreen) {
+        navigator.splashscreen.hide();
+    }
     this.state.start('Game');
   }
 };

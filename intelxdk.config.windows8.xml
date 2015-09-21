@@ -18,4 +18,6 @@
 <preference name="windows-publisher-id"/>
 <preference name="Fullscreen" value="true"/>
 <preference name="Orientation" value="landscape"/>
-<!--creationInfo:{"src":"https://appcenter.html5tools-software.intel.com/api/v2.0/redirect/projectrenderers/release-2015-ww32/jsapp/templates-phaser-landscape/sample.zip","projectTypeName":"com.intel.xdk.projecttype.jsapp"}--></widget>
+<!--creationInfo:{"src":"https://appcenter.html5tools-software.intel.com/api/v2.0/redirect/projectrenderers/release-2015-ww32/jsapp/templates-phaser-landscape/sample.zip","projectTypeName":"com.intel.xdk.projecttype.jsapp"}-->
+<preference name="SplashScreenDelay" value="10000"/>
+<preference name="AutoHideSplashScreen" value="false"/></widget>
