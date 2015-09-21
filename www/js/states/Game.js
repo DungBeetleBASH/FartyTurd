@@ -42,6 +42,12 @@ FartyTurd.GameState = {
     this.fartCountLabel.anchor.setTo(0.5);
     this.fartCountLabel.alpha = 0.7;
     this.showTapToStartOverlay();
+    this.createAdBanner();
+  },
+  createAdBanner: function () {
+    if(FartyTurd.admobLoaded) {
+      AdMob.showBanner(AdMob.AD_POSITION.BOTTOM_CENTERED);
+    }
   },
   createBackground: function () {
     this.background = this.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'background');
@@ -126,7 +132,7 @@ FartyTurd.GameState = {
       if (this.cursors.up.isDown || this.game.input.activePointer.isDown) {
         this.playerJump();
       }
-      
+
       this.rotatePlayer();
 
       if (this.currentPipe.length && this.currentPipe.children[0].right < this.game.world.width) {
@@ -221,7 +227,7 @@ FartyTurd.GameState = {
       upperPipeHeight: this.pipeConfig.minHeight + Math.random() * (this.pipeConfig.maxHeight - this.pipeConfig.minHeight),
       pipeGap: this.pipeConfig.minGap + Math.random() * (this.pipeConfig.maxGap - this.pipeConfig.minGap)
     };
-    
+
     if (this.currentPipe && Math.abs(this.currentPipe.pipeData.upperPipeHeight - this.nextPipeData.upperPipeHeight) >= 100) {
       this.nextPipeData.separation += 60;
     }
@@ -233,6 +239,9 @@ FartyTurd.GameState = {
     this.updateHighscore();
     this.game.time.events.add(500, this.displayGameOverPanel, this);
 
+    if (FartyTurd.admobLoaded){
+      AdMob.showInterstitial();
+    }
   },
   displayGameOverPanel: function() {
     var gameOverPanel = {};
