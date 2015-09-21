@@ -27,7 +27,7 @@ FartyTurd.BootState = {
     this.state.start('Preload');
   },
   setupAdmob: function() {
-    var adConfig = artyTurd.config.AdMob;
+    var adConfig = FartyTurd.config.AdMob;
 
     if (adConfig.banner.active) {
       AdMob.createBanner({
@@ -38,11 +38,11 @@ FartyTurd.BootState = {
       });
     }
 
-    if (adConfig.interstatial.active) {
+    if (adConfig.interstitial.active) {
       AdMob.prepareInterstitial({
-        adId: adConfig.interstatial.adId,
-        autoShow: adConfig.interstatial.autoShow,
-        isTesting: adConfig.interstatial.isTesting,
+        adId: adConfig.interstitial.adId,
+        autoShow: adConfig.interstitial.autoShow,
+        isTesting: adConfig.interstitial.isTesting,
       });
     }
 

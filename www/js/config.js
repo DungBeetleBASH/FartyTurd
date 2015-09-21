@@ -33,14 +33,14 @@ FartyTurd.config = {
 			adId: 'ca-app-pub-4778325687900583/4410146557',
 			active: true,
 			autoShow: false,
-			isTesting: true,
+			isTesting: false,
 			overlap: false
 		},
-		interstatial: {
+		interstitial: {
 			adId: 'ca-app-pub-4778325687900583/5886879754',
 			active: true,
 			autoShow: false,
-			isTesting: true
+			isTesting: false
 		}
 	}
 
