@@ -27,27 +27,24 @@ FartyTurd.BootState = {
     this.state.start('Preload');
   },
   setupAdmob: function() {
-    var admobSettings = {};
+    var adConfig = artyTurd.config.AdMob;
 
-    if (this.game.device.android) {
-      admobSettings = {
-        banner: 'ca-app-pub-4778325687900583/4410146557',
-        interstitial: 'ca-app-pub-4778325687900583/5886879754'
-      };
+    if (adConfig.banner.active) {
+      AdMob.createBanner({
+        adId: adConfig.banner.adId,
+        autoShow: adConfig.banner.autoShow,
+        isTesting: adConfig.banner.isTesting,
+        overlap: adConfig.banner.overlap
+      });
     }
 
-    AdMob.createBanner({
-      adId: admobSettings.banner,
-      autoShow: false,
-      isTesting: true,
-      overlap: false
-    });
-
-    AdMob.prepareInterstitial({
-      adId: admobSettings.interstitial,
-      autoShow: false,
-      isTesting: true
-    });
+    if (adConfig.interstatial.active) {
+      AdMob.prepareInterstitial({
+        adId: adConfig.interstatial.adId,
+        autoShow: adConfig.interstatial.autoShow,
+        isTesting: adConfig.interstatial.isTesting,
+      });
+    }
 
     FartyTurd.admobLoaded = true;
   }

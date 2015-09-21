@@ -26,6 +26,22 @@ FartyTurd.config = {
 	GameStateValues: {
 		numberOfSounds: 4,
 		startingPipes: 3
+	},
+
+	AdMob: {
+		banner: {
+			adId: 'ca-app-pub-4778325687900583/4410146557',
+			active: true,
+			autoShow: false,
+			isTesting: true,
+			overlap: false
+		},
+		interstatial: {
+			adId: 'ca-app-pub-4778325687900583/5886879754',
+			active: true,
+			autoShow: false,
+			isTesting: true
+		}
 	}
 
 };

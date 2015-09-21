@@ -45,7 +45,7 @@ FartyTurd.GameState = {
     this.showTapToStartOverlay();
   },
   createAdBanner: function () {
-    if(FartyTurd.admobLoaded) {
+    if(FartyTurd.admobLoaded && FartyTurd.config.AdMob.banner.active) {
       AdMob.showBanner(AdMob.AD_POSITION.TOP_CENTER);
     }
   },
@@ -238,10 +238,6 @@ FartyTurd.GameState = {
     this.player.kill();
     this.updateHighscore();
     this.game.time.events.add(500, this.displayGameOverPanel, this);
-
-    if (FartyTurd.admobLoaded){
-      AdMob.showInterstitial();
-    }
   },
   displayGameOverPanel: function() {
     var gameOverPanel = {};
@@ -262,6 +258,10 @@ FartyTurd.GameState = {
       this.add.text(this.game.width/2, this.game.height/2 + 120, this.strings.tap, this.styles.tap).anchor.setTo(0.5);
       this.game.input.onDown.addOnce(this.restart, this);
       this.cursors.up.onDown.addOnce(this.restart, this);
+
+      if (FartyTurd.admobLoaded && FartyTurd.config.AdMob.interstitial.active) {
+        AdMob.showInterstitial();
+      }
     }, this);
 
     gameOverPanel.start();
