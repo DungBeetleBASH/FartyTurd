@@ -39,7 +39,6 @@ FartyTurd.BootState = {
       };
     }
 
-    //2. prepare banner ad
     AdMob.createBanner({
       adId: admobSettings.banner,
       autoShow: false,
