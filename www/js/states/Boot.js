@@ -13,11 +13,46 @@ FartyTurd.BootState = {
 
     //physics system
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    // AdMob
+    this.game.device.whenReady(function() {
+      if (this.game.device.cordova || this.game.device.crosswalk) {
+        if (typeof AdMob !== 'undefined' && AdMob) {
+          this.setupAdmob();
+        }
+      }
+    }, this);
   },
   preload: function() {
     this.load.image('loadingBar', 'asset/images/loadingBar.png');
   },
   create: function() {
     this.state.start('Preload');
+  },
+  setupAdmob: function() {
+    var admobSettings = {};
+
+    if (this.game.device.android) {
+      admobSettings = {
+        banner: 'ca-app-pub-4778325687900583/4410146557',
+        interstitial: 'ca-app-pub-4778325687900583/5886879754'
+      };
+    }
+
+    //2. prepare banner ad
+    AdMob.createBanner({
+      adId: admobSettings.banner,
+      autoShow: false,
+      isTesting: true,
+      overlap: false
+    });
+
+    AdMob.prepareInterstitial({
+      adId: admobSettings.interstitial,
+      autoShow: false,
+      isTesting: true
+    });
+
+    FartyTurd.admobLoaded = true;
   }
 };
