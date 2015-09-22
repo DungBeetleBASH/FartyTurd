@@ -5,9 +5,9 @@ FartyTurd.config = {
 	GameStateStyles: {
 		fartCount: {font: '50px Arial', fill: '#fff'},
 		gameOver: {font: '30px Arial', fill: '#fff'},
-		gameOverSubtitle: {font: '15px Arial', fill: '#fff'},
+		gameOverSubtitle: {font: '18px Arial', fill: '#fff'},
 		score: {font: '20px Arial', fill: '#fff'},
-		tap: {font: '10px Arial', fill: '#fff'},
+		tap: {font: '14px Arial', fill: '#fff'},
 		tapToStart: {font: '30px Arial', fill: '#fff'},
 		tapToFart: {font: '30px Arial', fill: '#fff'}
 	},
@@ -31,7 +31,7 @@ FartyTurd.config = {
 	AdMob: {
 		banner: {
 			adId: 'ca-app-pub-4778325687900583/4410146557',
-			active: false,
+			active: true,
 			autoShow: false,
 			isTesting: false,
 			overlap: false

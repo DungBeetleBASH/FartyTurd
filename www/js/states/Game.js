@@ -23,8 +23,8 @@ FartyTurd.GameState = {
     this.pipeConfig = {
       maxHeight: 260,
       minHeight: 20,
-      maxGap: 140,
-      minGap: 90
+      maxGap: 120,
+      minGap: 85
     };
 
     this.isFarting = false;
@@ -252,10 +252,10 @@ FartyTurd.GameState = {
     gameOverPanel.onComplete.add(function(){
       this.background.stopScroll();
       this.add.text(this.game.width/2, this.game.height/2 - 40, this.strings.gameOver, this.styles.gameOver).anchor.setTo(0.5);
-      this.add.text(this.game.width/2, this.game.height/2 - 10, this.strings.gameOverSubtitle, this.styles.gameOverSubtitle).anchor.setTo(0.5);
+      this.add.text(this.game.width/2, this.game.height/2 - 5, this.strings.gameOverSubtitle, this.styles.gameOverSubtitle).anchor.setTo(0.5);
       this.add.text(this.game.width/2, this.game.height/2 + 50, this.strings.highScore + this.highScore, this.styles.score).anchor.setTo(0.5);
       this.add.text(this.game.width/2, this.game.height/2 + 80, this.strings.currentScore + this.currentScore, this.styles.score).anchor.setTo(0.5);
-      this.add.text(this.game.width/2, this.game.height/2 + 120, this.strings.tap, this.styles.tap).anchor.setTo(0.5);
+      this.add.text(this.game.width/2, this.game.height/2 + 125, this.strings.tap, this.styles.tap).anchor.setTo(0.5);
       this.game.input.onDown.addOnce(this.restart, this);
       this.cursors.up.onDown.addOnce(this.restart, this);
 
