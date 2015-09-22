@@ -31,7 +31,7 @@ FartyTurd.config = {
 	AdMob: {
 		banner: {
 			adId: 'ca-app-pub-4778325687900583/4410146557',
-			active: true,
+			active: false,
 			autoShow: false,
 			isTesting: false,
 			overlap: false
