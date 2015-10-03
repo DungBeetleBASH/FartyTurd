@@ -7,11 +7,15 @@
         "files": {}
     },
     "installed_plugins": {
-        "org.apache.cordova.device": {},
-        "org.apache.cordova.splashscreen": {},
-        "org.apache.cordova.media": {}
+        "cordova-plugin-device": {},
+        "cordova-plugin-splashscreen": {},
+        "cordova-plugin-media": {},
+        "intel.xdk.device": {},
+        "cordova-plugin-admob": {}
     },
     "dependent_plugins": {
-        "org.apache.cordova.file": {}
+        "com.rjfun.cordova.extension": {},
+        "cordova-plugin-file": {},
+        "cordova-plugin-googleplayservices": {}
     }
 }

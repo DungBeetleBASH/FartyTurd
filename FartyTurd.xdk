@@ -1,11 +1,11 @@
 {
   "project": {
-    "projectSettingsVersion": "1.2",
+    "projectSettingsVersion": "2.0.0",
     "creationData": {
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "https://appcenter.html5tools-software.intel.com/api/v2.0/redirect/projectrenderers/release-2015-ww32/jsapp/templates-phaser-landscape/sample.zip",
       "projectGuid": "12894dd5-9204-48a6-968f-737dc3629c73",
-      "lastModifiedDate": 1442949208920,
+      "lastModifiedDate": 1443895289312,
       "creationDate": 1440449282290
     },
     "sourceDirectory": "www",
@@ -25,53 +25,192 @@
     "cordovaPluginsDirectory": "plugins",
     "cordovaPlugins": [
       {
-        "id": "org.apache.cordova.device",
-        "version": "0.2.13",
-        "selectedState": "Included",
-        "data": {},
-        "paramvals": {},
-        "dependsOn": [],
-        "dependedBy": []
-      },
-      {
-        "id": "org.apache.cordova.splashscreen",
-        "version": "0.3.5",
-        "selectedState": "Included",
-        "data": {},
-        "paramvals": {},
-        "dependsOn": [],
-        "dependedBy": []
-      },
-      {
-        "id": "org.apache.cordova.media",
-        "version": "0.2.15",
-        "selectedState": "Included",
-        "data": {},
-        "paramvals": {},
-        "dependsOn": [],
-        "dependedBy": []
-      },
-      {
-        "id": "intel.xdk.device",
-        "selectedState": "Included",
-        "data": {},
-        "paramvals": {},
-        "dependsOn": [],
-        "dependedBy": []
-      },
-      {
-        "id": "com.google.cordova.admob",
-        "version": "",
+        "id": "cordova-plugin-device",
+        "version": "1.0.1",
         "selectedState": "Included",
         "data": {},
         "paramvals": {},
         "dependsOn": [],
         "dependedBy": [],
-        "custom": "true",
-        "name": "AdMobPluginPro",
-        "origin": "com.google.cordova.admob",
         "originType": "cordova.io",
-        "sourceLocation": ""
+        "origin": "cordova-plugin-device",
+        "permissions": {},
+        "name": "Device",
+        "topLevel": true,
+        "checksum": "adfc61ba",
+        "gitref": "",
+        "description": "Cordova Device Plugin",
+        "cordovaVersion": ">=3.0"
+      },
+      {
+        "id": "cordova-plugin-splashscreen",
+        "version": "2.1.0",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": [],
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-splashscreen",
+        "permissions": {},
+        "name": "Splashscreen",
+        "topLevel": true,
+        "checksum": "170efb68",
+        "gitref": "",
+        "description": "Cordova Splashscreen Plugin",
+        "cordovaVersion": ">=3.0.0"
+      },
+      {
+        "id": "cordova-plugin-media",
+        "version": "1.0.1",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {},
+        "dependsOn": [
+          "cordova-plugin-file"
+        ],
+        "dependedBy": [],
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-media",
+        "permissions": {
+          "android:name": [
+            "android.permission.RECORD_AUDIO",
+            "android.permission.MODIFY_AUDIO_SETTINGS",
+            "android.permission.WRITE_EXTERNAL_STORAGE",
+            "android.permission.READ_PHONE_STATE"
+          ]
+        },
+        "name": "Media",
+        "topLevel": true,
+        "checksum": "93cdda44",
+        "gitref": "",
+        "description": "Cordova Media Plugin",
+        "cordovaVersion": ">=3.0.0"
+      },
+      {
+        "id": "cordova-plugin-file",
+        "name": "File",
+        "version": "2.1.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-file",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/org.apache.cordova.file",
+        "selectedState": "Included",
+        "checksum": "a32414d6",
+        "dependsOn": [],
+        "topLevel": false,
+        "permissions": {
+          "android:name": [
+            "android.permission.WRITE_EXTERNAL_STORAGE"
+          ]
+        },
+        "description": "Cordova File Plugin",
+        "data": {},
+        "dependedBy": [
+          "cordova-plugin-media"
+        ],
+        "cordovaVersion": ">=3.0"
+      },
+      {
+        "id": "intel.xdk.device",
+        "name": "Intel XDK Device",
+        "version": "1.2.5",
+        "originType": "repo",
+        "origin": "https://github.com/01org/cordova-plugin-intel-xdk-device.git",
+        "gitref": "r1.2.5",
+        "subdir": ".",
+        "paramvals": {},
+        "sourceLocation": "plugins/intel.xdk.device",
+        "selectedState": "Included",
+        "checksum": "5d38e44a",
+        "dependsOn": [],
+        "topLevel": true,
+        "cordovaVersion": ">=3.0.0",
+        "permissions": {
+          "android:name": [
+            "android.permission.ACCESS_WIFI_STATE",
+            "android.permission.READ_PHONE_STATE",
+            "android.permission.WAKE_LOCK",
+            "android.permission.CAMERA",
+            "android.permission.FLASHLIGHT"
+          ]
+        },
+        "description": "Intel XDK Device Plugin",
+        "data": {},
+        "dependedBy": []
+      },
+      {
+        "id": "cordova-plugin-admob",
+        "name": "AdMob Plugin Pro",
+        "version": "2.9.8",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-admob",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-admob",
+        "selectedState": "Included",
+        "checksum": "9558077b",
+        "dependsOn": [
+          "cordova-plugin-extension",
+          "cordova-plugin-googleplayservices"
+        ],
+        "topLevel": true,
+        "cordovaVersion": ">=3.0",
+        "author": "Liming Xie",
+        "permissions": {
+          "android:name": [
+            "android.permission.INTERNET",
+            "android.permission.ACCESS_NETWORK_STATE"
+          ]
+        },
+        "description": "Ultimate Cordova Plugin for Google AdMob and DFP to monetize hybrid apps. Show mobile Ad with single line of JavaScript. Compatible with Cordova CLI, PhoneGap Build, Intel XDK/Crosswalk, Google ChromeApp, Ionic, Meteor, etc.",
+        "data": {},
+        "dependedBy": []
+      },
+      {
+        "id": "cordova-plugin-extension",
+        "name": "Cordova Plugin Extension",
+        "version": "1.1.6",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-extension",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-extension",
+        "selectedState": "Included",
+        "checksum": "42f10526",
+        "dependsOn": [],
+        "topLevel": true,
+        "cordovaVersion": ">=3.0",
+        "author": "Liming Xie",
+        "permissions": {},
+        "description": "Common interface and reusable code, as dependency of other plugins",
+        "data": {},
+        "dependedBy": [
+          "cordova-plugin-admob"
+        ],
+        "custom": "true"
+      },
+      {
+        "id": "cordova-plugin-googleplayservices",
+        "name": "Google Play Services for Android",
+        "version": "19.0.3",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-googleplayservices",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-googleplayservices",
+        "selectedState": "Included",
+        "checksum": "801e41e4",
+        "dependsOn": [],
+        "topLevel": false,
+        "cordovaVersion": ">=3.0.0",
+        "permissions": {},
+        "data": {},
+        "dependedBy": [
+          "cordova-plugin-admob"
+        ],
+        "custom": "true"
       }
     ],
     "buildConfigurations": {
@@ -88,12 +227,15 @@
         },
         "isActive_": true,
         "appName_": "Farty Turd",
-        "appID_": "com.github.Pappa.FartyTurd",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appID_": "com.github.DungBeetleBASH.FartyTurd",
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
         "icons_": [
           {
             "relPath": "asset/icons/36.png",
@@ -153,9 +295,9 @@
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "iosProvs_": [],
-        "cordovaCLIVersion_": "4.1.2",
+        "cordovaCLIVersion_": "5.1.1",
         "crosswalkVersion_": "11",
-        "appVersion_": "0.2.0",
+        "appVersion_": "0.2.1",
         "appDescription_": "A turd that farts.",
         "appAuthor_": "Pappa",
         "appVersionCode_": "1"
@@ -173,12 +315,15 @@
         },
         "isActive_": true,
         "appName_": "Farty Turd",
-        "appID_": "com.github.Pappa.FartyTurd",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appID_": "com.github.DungBeetleBASH.FartyTurd",
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
         "icons_": [
           {
             "relPath": "asset/icons/36.png",
@@ -238,9 +383,9 @@
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "iosProvs_": [],
-        "cordovaCLIVersion_": "4.1.2",
-        "crosswalkVersion_": "11",
-        "appVersion_": "0.2.0",
+        "cordovaCLIVersion_": "5.1.1",
+        "crosswalkVersion_": "15",
+        "appVersion_": "0.2.1",
         "appDescription_": "A turd that farts.",
         "appAuthor_": "Pappa",
         "appVersionCode_": "1"
@@ -258,17 +403,20 @@
         "isActive_": true,
         "appName_": "FartyTurd2",
         "appID_": "xdk.intel.phaser.js.project",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "iosProvs_": [],
-        "cordovaCLIVersion_": "4.1.2",
+        "cordovaCLIVersion_": "5.1.1",
         "crosswalkVersion_": "11",
         "appVersion_": "0.0.1",
         "appDescription_": "Use this template to start with a blank landscape Game from Phaser",
@@ -287,17 +435,20 @@
         "isActive_": true,
         "appName_": "FartyTurd2",
         "appID_": "xdk.intel.phaser.js.project",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "iosProvs_": [],
-        "cordovaCLIVersion_": "4.1.2",
+        "cordovaCLIVersion_": "5.1.1",
         "crosswalkVersion_": "11",
         "appVersion_": "0.0.0.1",
         "appDescription_": "Use this template to start with a blank landscape Game from Phaser",
@@ -311,11 +462,14 @@
         "isActive_": false,
         "appName_": "FartyTurd2",
         "appID_": "not.yet.specified",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
@@ -331,11 +485,14 @@
         "isActive_": false,
         "appName_": "FartyTurd2",
         "appID_": "not.yet.specified",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
@@ -351,11 +508,14 @@
         "isActive_": false,
         "appName_": "FartyTurd2",
         "appID_": "not.yet.specified",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
@@ -371,18 +531,43 @@
         "isActive_": false,
         "appName_": "FartyTurd2",
         "appID_": "not.yet.specified",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "appAuthor_": "Intel XDK",
         "appVersion_": "0.0.1"
+      },
+      "WP81": {
+        "platform_": "wp81",
+        "runtime_": "Cordova 3.x",
+        "name_": "WP81",
+        "preferences_": {},
+        "isActive_": true,
+        "appName_": "FartyTurd",
+        "appID_": "not.yet.specified",
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [],
+          "intents": [],
+          "navigation": []
+        },
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appVersion_": "0.0.0.1",
+        "cordovaCLIVersion_": "5.1.1"
       }
-    }
+    },
+    "testDirectory": "test"
   }
 }
