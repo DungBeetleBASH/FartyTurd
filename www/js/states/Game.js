@@ -12,9 +12,6 @@ FartyTurd.GameState = {
     //gravity
     this.game.physics.arcade.gravity.y = 1000;
 
-    //enable cursor keys
-    this.cursors = this.game.input.keyboard.createCursorKeys();
-
     this.currentScore = 0;
     this.levelScoreBoundary = 5;
     this.levelSpeed = 100;
@@ -129,7 +126,7 @@ FartyTurd.GameState = {
     if (this.player.alive && this.hasStarted) {
       this.pipePool.forEachAlive(this.checkEachPipe, this);
 
-      if (this.cursors.up.isDown || this.game.input.activePointer.isDown) {
+      if (this.game.input.activePointer.isDown) {
         this.playerJump();
       }
 
@@ -143,13 +140,13 @@ FartyTurd.GameState = {
       if (this.player.bottom >= this.game.world.height) {
         this.gameOver();
       }
-    } else if (!this.hasStarted && (this.cursors.up.isDown || this.game.input.activePointer.isDown)) {
+    } else if (!this.hasStarted && this.game.input.activePointer.isDown) {
       this.startGame();
     }
 
   },
   pauseUpdate: function () {
-      if (this.cursors.up.isDown || this.game.input.activePointer.isDown) {
+      if (this.game.input.activePointer.isDown) {
         this.game.paused = false;
       }
   },
@@ -257,7 +254,6 @@ FartyTurd.GameState = {
       this.add.text(this.game.width/2, this.game.height/2 + 80, this.strings.currentScore + this.currentScore, this.styles.score).anchor.setTo(0.5);
       this.add.text(this.game.width/2, this.game.height/2 + 125, this.strings.tap, this.styles.tap).anchor.setTo(0.5);
       this.game.input.onDown.addOnce(this.restart, this);
-      this.cursors.up.onDown.addOnce(this.restart, this);
 
       if (FartyTurd.admobLoaded && FartyTurd.config.AdMob.interstitial.active) {
         AdMob.showInterstitial();
