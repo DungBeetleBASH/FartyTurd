@@ -39,16 +39,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "intel.xdk.device": {
-        "source": {
-            "type": "git",
-            "url": "https://github.com/01org/cordova-plugin-intel-xdk-device.git",
-            "subdir": ".",
-            "ref": "r1.2.5"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-admob": {
         "source": {
             "type": "registry",
@@ -63,6 +53,15 @@
             "id": "cordova-plugin-googleplayservices"
         },
         "is_top_level": false,
+        "variables": {}
+    },
+    "com.DungBeetleBASH.OrientationLock": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/DungBeetleBASH/cordova-plugin-DungBeetleBASH-OrientationLock",
+            "subdir": "."
+        },
+        "is_top_level": true,
         "variables": {}
     }
 }

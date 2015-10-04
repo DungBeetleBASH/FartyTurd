@@ -5,7 +5,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "https://appcenter.html5tools-software.intel.com/api/v2.0/redirect/projectrenderers/release-2015-ww32/jsapp/templates-phaser-landscape/sample.zip",
       "projectGuid": "12894dd5-9204-48a6-968f-737dc3629c73",
-      "lastModifiedDate": 1443896799938,
+      "lastModifiedDate": 1443984887961,
       "creationDate": 1440449282290
     },
     "sourceDirectory": "www",
@@ -113,34 +113,6 @@
         "cordovaVersion": ">=3.0"
       },
       {
-        "id": "intel.xdk.device",
-        "name": "Intel XDK Device",
-        "version": "1.2.5",
-        "originType": "repo",
-        "origin": "https://github.com/01org/cordova-plugin-intel-xdk-device.git",
-        "gitref": "r1.2.5",
-        "subdir": ".",
-        "paramvals": {},
-        "sourceLocation": "plugins/intel.xdk.device",
-        "selectedState": "Included",
-        "checksum": "5d38e44a",
-        "dependsOn": [],
-        "topLevel": true,
-        "cordovaVersion": ">=3.0.0",
-        "permissions": {
-          "android:name": [
-            "android.permission.ACCESS_WIFI_STATE",
-            "android.permission.READ_PHONE_STATE",
-            "android.permission.WAKE_LOCK",
-            "android.permission.CAMERA",
-            "android.permission.FLASHLIGHT"
-          ]
-        },
-        "description": "Intel XDK Device Plugin",
-        "data": {},
-        "dependedBy": []
-      },
-      {
         "id": "cordova-plugin-admob",
         "name": "AdMob Plugin Pro",
         "version": "2.9.8",
@@ -210,6 +182,26 @@
         "dependedBy": [
           "cordova-plugin-admob"
         ],
+        "custom": "true"
+      },
+      {
+        "id": "com.DungBeetleBASH.OrientationLock",
+        "name": "DungBeetleBASH Orientation",
+        "version": "1.0.0",
+        "originType": "repo",
+        "origin": "https://github.com/DungBeetleBASH/cordova-plugin-DungBeetleBASH-OrientationLock",
+        "gitref": "",
+        "subdir": ".",
+        "paramvals": {},
+        "sourceLocation": "plugins/com.DungBeetleBASH.OrientationLock",
+        "selectedState": "Included",
+        "checksum": "24cd5fd4",
+        "dependsOn": [],
+        "topLevel": true,
+        "permissions": {},
+        "description": "DungBeetleBASH Orientation Plugin",
+        "data": {},
+        "dependedBy": [],
         "custom": "true"
       }
     ],
@@ -297,7 +289,7 @@
         "iosProvs_": [],
         "cordovaCLIVersion_": "5.1.1",
         "crosswalkVersion_": "11",
-        "appVersion_": "0.2.2",
+        "appVersion_": "1.0.1",
         "appDescription_": "A turd that farts.",
         "appAuthor_": "Pappa",
         "appVersionCode_": "1"
@@ -385,7 +377,7 @@
         "iosProvs_": [],
         "cordovaCLIVersion_": "5.1.1",
         "crosswalkVersion_": "15",
-        "appVersion_": "0.2.2",
+        "appVersion_": "1.0.1",
         "appDescription_": "A turd that farts.",
         "appAuthor_": "Pappa",
         "appVersionCode_": "1"

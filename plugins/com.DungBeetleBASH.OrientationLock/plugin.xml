@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="com.DungBeetleBASH.OrientationLock"
+    version="1.0.0">
+    <name>DungBeetleBASH Orientation</name>
+    <description>DungBeetleBASH Orientation Plugin</description>
+    <license>MIT</license>
+    <keywords>DungBeetleBASH, Orientation</keywords>
+    <repo>https://github.com/DungBeetleBASH/cordova-plugin-DungBeetleBASH-OrientationLock.git</repo>
+
+    <js-module src="www/orientationLock.js" name="OrientationLock">
+        <merges target="device" />
+    </js-module>
+
+    <!-- android -->
+
+    <platform name="android">
+        <source-file src="src/android/OrientationLock.java" target-dir="src/com/DungBeetleBASH/OrientationLock/" />
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="OrientationLock">
+                <param name="android-package" value="com.DungBeetleBASH.OrientationLock" />
+            </feature>
+        </config-file>
+    </platform>
+
+</plugin>

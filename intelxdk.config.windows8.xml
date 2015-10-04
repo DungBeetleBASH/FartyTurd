@@ -13,10 +13,10 @@
 <intelxdk:plugin intelxdk:name="Splashscreen" intelxdk:value="cordova-plugin-splashscreen" intelxdk:version="2.1.0" intelxdk:checksum="170efb68"/>
 <intelxdk:plugin intelxdk:name="Media" intelxdk:value="cordova-plugin-media" intelxdk:version="1.0.1" intelxdk:checksum="93cdda44"/>
 <intelxdk:plugin intelxdk:name="File" intelxdk:value="cordova-plugin-file" intelxdk:version="2.1.0" intelxdk:checksum="a32414d6"/>
-<intelxdk:plugin intelxdk:name="Intel XDK Device" intelxdk:value="intel.xdk.device" intelxdk:version="1.2.5" intelxdk:checksum="3613045d" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="AdMob Plugin Pro" intelxdk:value="cordova-plugin-admob" intelxdk:version="2.9.8" intelxdk:checksum="9558077b"/>
 <intelxdk:plugin intelxdk:name="Cordova Plugin Extension" intelxdk:value="cordova-plugin-extension" intelxdk:version="1.1.6" intelxdk:checksum="42f10526"/>
 <intelxdk:plugin intelxdk:name="Google Play Services for Android" intelxdk:value="cordova-plugin-googleplayservices" intelxdk:version="19.0.3" intelxdk:checksum="801e41e4"/>
+<intelxdk:plugin intelxdk:name="DungBeetleBASH Orientation" intelxdk:value="com.DungBeetleBASH.OrientationLock" intelxdk:version="1.0.0" intelxdk:checksum="24cd5fd4" intelxdk:type="file"/>
 <preference name="windows-publisher-display-name"/>
 <preference name="windows-publisher-id"/>
 <preference name="Fullscreen" value="true"/>

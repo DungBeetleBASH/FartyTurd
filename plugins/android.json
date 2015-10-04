@@ -10,8 +10,8 @@
         "cordova-plugin-device": {},
         "cordova-plugin-splashscreen": {},
         "cordova-plugin-media": {},
-        "intel.xdk.device": {},
-        "cordova-plugin-admob": {}
+        "cordova-plugin-admob": {},
+        "com.DungBeetleBASH.OrientationLock": {}
     },
     "dependent_plugins": {
         "com.rjfun.cordova.extension": {},

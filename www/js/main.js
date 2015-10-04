@@ -1,29 +1,9 @@
 var FartyTurd = FartyTurd || {};
 
 function onDeviceReady() {
-    intel.xdk.device.setRotateOrientation("portrait");
-    intel.xdk.device.setAutoRotate(false);
-    //console.log("intel.xdk.device.ready");
-
-    document.addEventListener("intel.xdk.device.suspend", function() {
-        FartyTurd.game.paused = true;
-        //console.log("intel.xdk.device.suspend");
-    }, false);
-
-    document.addEventListener("intel.xdk.device.pause", function() {
-        FartyTurd.game.paused = true;
-        //console.log("intel.xdk.device.pause");
-    }, false);
-
-    document.addEventListener("intel.xdk.device.continue", function() {
-        FartyTurd.game.paused = false;
-        //console.log("intel.xdk.device.continue");
-    }, false);
-
-    document.addEventListener("intel.xdk.device.resume", function() {
-        FartyTurd.game.paused = false;
-        //console.log("intel.xdk.device.resume");
-    }, false);
+    if (device && device.setOrientation) {
+        device.setOrientation("portrait");
+    }
 
     document.addEventListener("pause", function() {
         FartyTurd.game.paused = true;
@@ -34,9 +14,11 @@ function onDeviceReady() {
         FartyTurd.game.paused = false;
         //console.log("resume");
     }, false);
+
+    document.removeEventListener('deviceready', onDeviceReady);
 }
 
-document.addEventListener("intel.xdk.device.ready", onDeviceReady, false);
+document.addEventListener("deviceready", onDeviceReady, false);
 
 FartyTurd.game = new Phaser.Game(320, 480, Phaser.AUTO);
 
