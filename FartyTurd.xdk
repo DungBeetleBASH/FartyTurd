@@ -5,7 +5,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "https://appcenter.html5tools-software.intel.com/api/v2.0/redirect/projectrenderers/release-2015-ww32/jsapp/templates-phaser-landscape/sample.zip",
       "projectGuid": "12894dd5-9204-48a6-968f-737dc3629c73",
-      "lastModifiedDate": 1443984887961,
+      "lastModifiedDate": 1443987240253,
       "creationDate": 1440449282290
     },
     "sourceDirectory": "www",
@@ -292,7 +292,7 @@
         "appVersion_": "1.0.1",
         "appDescription_": "A turd that farts.",
         "appAuthor_": "Pappa",
-        "appVersionCode_": "1"
+        "appVersionCode_": "101"
       },
       "Android-Crosswalk": {
         "platform_": "android",
@@ -380,7 +380,7 @@
         "appVersion_": "1.0.1",
         "appDescription_": "A turd that farts.",
         "appAuthor_": "Pappa",
-        "appVersionCode_": "1"
+        "appVersionCode_": "101"
       },
       "iOS": {
         "platform_": "ios",
